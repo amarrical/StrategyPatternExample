@@ -1,22 +1,24 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="IRuleParser.cs" company="ImprovingEnterprises">
+//-----------------------------------------------------------------------
+// <copyright file="CommentedFlatRuleParser.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
 //-----------------------------------------------------------------------
-namespace RuleBender.Interface
+namespace RuleBender.RuleParsers
 {
     using System;
     using System.Collections.Generic;
 
     using RuleBender.Entity;
+    using RuleBender.Interface;
 
     /// <summary>
-    /// Interface describing necessary methods to parse mail rules for the application.
+    /// Implements IRuleParser with no strategy pattern.
+    /// But at least it's commented, right?
     /// </summary>
-    public interface IRuleParser
+    public class CommentedFlatRuleParser : IRuleParser
     {
-        #region [ Methods ]
+        #region [ IRuleParser Methods ]
 
         /// <summary>
         /// Parses rules to determine which rules should be run.
@@ -25,7 +27,10 @@ namespace RuleBender.Interface
         /// <param name="mailRules">The mail rules to be evaluated.</param>
         /// <param name="startTime">Time at which the process started.</param>
         /// <returns>A collection of MailRules which need to be run.</returns>
-        IList<MailRule> ParseRules(IList<MailRule> mailRules, DateTime startTime); 
+        public IList<MailRule> ParseRules(IList<MailRule> mailRules, DateTime startTime)
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
     }

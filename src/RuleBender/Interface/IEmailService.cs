@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Anthony Marrical</author>
 //-----------------------------------------------------------------------
-namespace RuleBender.Logic
+namespace RuleBender.Interface
 {
     using System;
     using System.Collections.Generic;

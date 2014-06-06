@@ -60,7 +60,7 @@ namespace RuleBender.Logic
         /// <param name="startTime">The start time of the process.</param>
         public void SendMessages(DateTime startTime)
         {
-            var rules = this.ruleRepo.GetRules();
+            var rules = this.ruleRepo.GetMailRules();
             var rulesToRun = this.ruleParser.ParseRules(rules, startTime);
             var sentRules = this.emailService.Send(rulesToRun, startTime);
             this.ruleRepo.SaveRunRules(sentRules);

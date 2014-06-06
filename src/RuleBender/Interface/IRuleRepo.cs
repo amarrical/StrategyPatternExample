@@ -21,7 +21,7 @@ namespace RuleBender.Interface
         /// Gets all mail rules from store.
         /// </summary>
         /// <returns>A collection of MailRules</returns>
-        IList<MailRule> GetRules();
+        IList<MailRule> GetMailRules();
 
         /// <summary>
         /// Saves the updated rules which were run.

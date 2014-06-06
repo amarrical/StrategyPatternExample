@@ -9,6 +9,7 @@ namespace RuleBender.Entity
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Net.Mail;
 
     /// <summary>
     /// Contains a set of rules to determine when the attached mail message should be sent.
@@ -94,6 +95,11 @@ namespace RuleBender.Entity
         /// Gets or sets the number of times the rule was sent.
         /// </summary>
         public int TimesSent { get; set; }
+
+        /// <summary>
+        /// Gets or sets the mail message which should be sent if the rule is run.
+        /// </summary>
+        public MailMessage MailMessage { get; set; }
 
         #endregion
     }

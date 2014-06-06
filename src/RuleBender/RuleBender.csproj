@@ -40,6 +40,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\MailPattern.cs" />
+    <Compile Include="RuleParsers\CommentedFlatRuleParser.cs" />
+    <Compile Include="RuleParsers\EasyTestStragetyRuleParser.cs" />
+    <Compile Include="RuleParsers\RuleEliminators\InactiveMailRuleEliminator.cs" />
+    <Compile Include="RuleParsers\RuleEliminators\IRuleEliminator.cs" />
+    <Compile Include="RuleParsers\RuleEliminators\MaxRecurrencesMailRuleEliminator.cs" />
+    <Compile Include="RuleParsers\RuleEliminators\PastEndDateEliminiator.cs" />
+    <Compile Include="RuleParsers\RuleEliminators\RanTodayMailRuleEliminator.cs" />
+    <Compile Include="RuleParsers\RuleEliminators\RuleEliminator.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\DayOfMonthHandler.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\DayOfMonthOfYearHandler.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\DayOfWeekOfMonthHandler.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\DayOfYearHandler.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\EveryDayHandler.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\EveryWeekDayHandler.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\IMailRuleMatcher.cs" />
+    <Compile Include="RuleParsers\RuleEliminators\IMailRuleEliminator.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\IRuleMatcher.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\RuleMatcher.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\WeeklyHandler.cs" />
+    <Compile Include="RuleParsers\StragetyRuleParser.cs" />
+    <Compile Include="RuleParsers\UglyFlatRuleParser.cs" />
     <Compile Include="Interface\IEmailService.cs" />
     <Compile Include="Interface\IRuleParser.cs" />
     <Compile Include="Interface\IRuleRepo.cs" />
