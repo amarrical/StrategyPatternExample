@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleBender", "src\RuleBender\RuleBender.csproj", "{4C2D2F0D-A87E-41E2-BE64-0BBAF811EA8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleBender.Test", "test\RuleBender.Test\RuleBender.Test.csproj", "{94653FAE-33AD-48EC-A800-258900B6DF79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C2D2F0D-A87E-41E2-BE64-0BBAF811EA8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C2D2F0D-A87E-41E2-BE64-0BBAF811EA8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C2D2F0D-A87E-41E2-BE64-0BBAF811EA8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C2D2F0D-A87E-41E2-BE64-0BBAF811EA8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94653FAE-33AD-48EC-A800-258900B6DF79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94653FAE-33AD-48EC-A800-258900B6DF79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94653FAE-33AD-48EC-A800-258900B6DF79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94653FAE-33AD-48EC-A800-258900B6DF79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
