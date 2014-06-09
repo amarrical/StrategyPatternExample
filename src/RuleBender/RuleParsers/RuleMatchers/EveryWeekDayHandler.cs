@@ -11,6 +11,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
     using System.Linq;
 
     using RuleBender.Entity;
+    using RuleBender.RuleParsers.RuleMatchers.SubMatchers;
 
     /// <summary>
     /// Matches a rule set to run every week on particular days of the week (usually weekdays).

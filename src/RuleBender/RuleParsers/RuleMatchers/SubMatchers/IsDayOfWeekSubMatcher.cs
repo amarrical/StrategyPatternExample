@@ -1,19 +1,20 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="IsYearlyRecurrenceMetSubMatcher.cs" company="ImprovingEnterprises">
+// <copyright file="IsDayOfWeekSubMatcher.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
 //-----------------------------------------------------------------------
-namespace RuleBender.RuleParsers.RuleMatchers
+namespace RuleBender.RuleParsers.RuleMatchers.SubMatchers
 {
     using System;
+    using System.Linq;
 
     using RuleBender.Entity;
 
     /// <summary>
-    /// Matches if the MailRule has met yearly recurrence.
+    /// Matches if the start time is on a day the MailRule is configured to run on.
     /// </summary>
-    public class IsYearlyRecurrenceMetSubMatcher : ISubMatcher
+    public class IsDayOfWeekSubMatcher : ISubMatcher
     {
         #region [ ISubMatcher Methods ]
 
@@ -25,7 +26,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether the rule matches the SubRule.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return rule.LastSent.GetValueOrDefault().AddYears(rule.NumberOf.GetValueOrDefault()).Year <= startTime.Year;
+            return rule.DaysOfWeek.Any(d => d.Key == startTime.DayOfWeek && d.Value);
         }
 
         #endregion

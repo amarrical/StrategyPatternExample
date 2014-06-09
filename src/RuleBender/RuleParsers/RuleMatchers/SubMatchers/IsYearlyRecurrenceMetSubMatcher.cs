@@ -1,19 +1,19 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="IsMonthOfYearSubMatcher.cs" company="ImprovingEnterprises">
+// <copyright file="IsYearlyRecurrenceMetSubMatcher.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
 //-----------------------------------------------------------------------
-namespace RuleBender.RuleParsers.RuleMatchers
+namespace RuleBender.RuleParsers.RuleMatchers.SubMatchers
 {
     using System;
 
     using RuleBender.Entity;
 
     /// <summary>
-    /// Matches if the start time is on a month the MailRule is configured to run on.
+    /// Matches if the MailRule has met yearly recurrence.
     /// </summary>
-    public class IsMonthOfYearSubMatcher : ISubMatcher
+    public class IsYearlyRecurrenceMetSubMatcher : ISubMatcher
     {
         #region [ ISubMatcher Methods ]
 
@@ -25,7 +25,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether the rule matches the SubRule.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return rule.Month == startTime.Month;
+            return rule.LastSent.GetValueOrDefault().AddYears(rule.NumberOf.GetValueOrDefault()).Year <= startTime.Year;
         }
 
         #endregion

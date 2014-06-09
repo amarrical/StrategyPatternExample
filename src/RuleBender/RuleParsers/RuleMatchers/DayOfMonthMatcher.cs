@@ -11,6 +11,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
     using System.Linq;
 
     using RuleBender.Entity;
+    using RuleBender.RuleParsers.RuleMatchers.SubMatchers;
 
     /// <summary>
     /// Matches a MailRule configured to run on a particular day every X months.
