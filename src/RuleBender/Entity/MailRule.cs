@@ -35,8 +35,9 @@ namespace RuleBender.Entity
 
         /// <summary>
         /// Gets or sets the time when the rule should start being applied.
+        /// Null if not waiting for a start date.
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         /// <summary>
         /// Gets or sets the date at which the rule is no longer valid.
@@ -66,7 +67,7 @@ namespace RuleBender.Entity
         /// <summary>
         /// Gets or sets a value detailing which day of the month the rule applies. 
         /// </summary>
-        public int DayNumber { get; set; }
+        public int? DayNumber { get; set; }
 
         /// <summary>
         /// Gets or sets which month of the year the rule applies.

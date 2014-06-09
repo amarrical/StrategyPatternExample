@@ -31,17 +31,17 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <summary>
         /// Initializes a new instance of the <see cref="RuleMatcher"/> class.
         /// </summary>
-        /// <param name="matchers">Matchers to determine which MailRules should send messages.</param>
+        /// <param name="matchers">A collection of IMailRuleMatchers to determine which MailRules should send messages.</param>
         public RuleMatcher(List<IMailRuleMatcher> matchers = null)
         {
             this.matchers = matchers ?? new List<IMailRuleMatcher>
                                         {
-                                            new WeeklyHandler(),
+                                            new WeeklyMatcher(),
                                             new DayOfMonthHandler(),
                                             new DayOfMonthOfYearHandler(),
                                             new DayOfWeekOfMonthHandler(),
                                             new DayOfYearHandler(),
-                                            new EveryDayHandler(),
+                                            new EveryDayMatcher(),
                                             new EveryWeekDayHandler()
                                         };
         }

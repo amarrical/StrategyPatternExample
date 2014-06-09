@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="RanTodayMailRuleEliminator.cs" company="ImprovingEnterprises">
+// <copyright file="StartDateEliminator.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
@@ -11,9 +11,9 @@ namespace RuleBender.RuleParsers.RuleEliminators
     using RuleBender.Entity;
 
     /// <summary>
-    /// Eliminates a MailRule if that MailRule has already been run today.
+    /// Eliminates a mail rule if it has a StartDate and the StartDate is not yet met.
     /// </summary>
-    public class RanTodayMailRuleEliminator : IMailRuleEliminator
+    public class StartDateEliminator : IMailRuleEliminator
     {
         #region [ IMailRuleEliminator Methods ]
 
@@ -24,8 +24,8 @@ namespace RuleBender.RuleParsers.RuleEliminators
         /// <returns>A value indicating whether this eliminator can handle this rule.</returns>
         public bool IsProperEliminator(MailRule rule)
         {
-            // Applies to all mail rules.
-            return true;
+            // Applies to mail rules which have a start date.
+            return rule.StartDate.HasValue;
         }
 
         /// <summary>
@@ -36,8 +36,8 @@ namespace RuleBender.RuleParsers.RuleEliminators
         /// <returns>A value indicating whether the rule can be eliminated.</returns>
         public bool ShouldBeEliminated(MailRule rule, DateTime startTime)
         {
-            // If the rule has run today, eliminate it.
-            return rule.LastSent.GetValueOrDefault().Date == startTime.Date;
+            // Eliminate if today is before the start date.
+            return rule.StartDate.Value.Date < startTime.Date; 
         } 
 
         #endregion

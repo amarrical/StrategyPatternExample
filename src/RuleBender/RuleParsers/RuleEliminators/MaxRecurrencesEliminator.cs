@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="MaxRecurrencesMailRuleEliminator.cs" company="ImprovingEnterprises">
+// <copyright file="MaxRecurrencesEliminator.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
@@ -13,7 +13,7 @@ namespace RuleBender.RuleParsers.RuleEliminators
     /// <summary>
     /// Eliminates a rule if it has a max number of occurrences and it has been run that many times or more.
     /// </summary>
-    public class MaxRecurrencesMailRuleEliminator : IMailRuleEliminator
+    public class MaxRecurrencesEliminator : IMailRuleEliminator
     {
         #region [ IMailRuleEliminator Methods ]
 

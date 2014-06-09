@@ -38,20 +38,20 @@ namespace RuleBender.RuleParsers
         {
             this.eliminators = new List<IMailRuleEliminator>
                                {
-                                   new InactiveMailRuleEliminator(),
-                                   new MaxRecurrencesMailRuleEliminator(),
+                                   new InactiveEliminator(),
+                                   new MaxRecurrencesEliminator(),
                                    new PastEndDateEliminiator(),
-                                   new RanTodayMailRuleEliminator()
+                                   new RanTodayEliminator()
                                };
 
             this.matchers = new List<IMailRuleMatcher>
                             {
-                                new WeeklyHandler(),
+                                new WeeklyMatcher(),
                                 new DayOfMonthHandler(),
                                 new DayOfMonthOfYearHandler(),
                                 new DayOfWeekOfMonthHandler(),
                                 new DayOfYearHandler(),
-                                new EveryDayHandler(),
+                                new EveryDayMatcher(),
                                 new EveryWeekDayHandler()
                             };
         }

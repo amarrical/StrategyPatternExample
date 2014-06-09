@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="EveryWeekDayHandler.cs" company="ImprovingEnterprises">
+// <copyright file="WeeklyMatcher.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
@@ -7,42 +7,40 @@
 namespace RuleBender.RuleParsers.RuleMatchers
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
     using RuleBender.Entity;
 
     /// <summary>
-    /// Matches a rule set to run every week on particular days of the week (usually weekdays).
+    /// Matches a MailRule which runs every number of weeks on a particular day of the week.
     /// </summary>
-    public class EveryWeekDayHandler : IMailRuleMatcher
+    public class WeeklyMatcher : IMailRuleMatcher
     {
         #region [ Fields ]
 
         /// <summary>
-        /// SubMatchers which help determine which MailRules should be sent.
+        /// Sub Rules which make up the matching criteria.
         /// </summary>
-        private readonly IList<ISubMatcher> subMatchers;
+        private readonly IList<ISubMatcher> subRules;
 
         #endregion
 
-        #region [ Constructor ]
+        #region [ Constructors ]
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EveryWeekDayHandler"/> class.
+        /// Initializes a new instance of the <see cref="WeeklyMatcher"/> class.
         /// </summary>
-        public EveryWeekDayHandler()
+        /// <param name="subRules">Sub Rules which make up the matching criteria.</param>
+        public WeeklyMatcher(IList<ISubMatcher> subRules = null)
         {
-            this.subMatchers = new List<ISubMatcher>
+            this.subRules = subRules ?? new List<ISubMatcher>
                 {
                     new IsDayOfWeekSubMatcher()
                 };
         }
 
         #endregion
-
-        #region [ IMailRuleMatcherMethods ]
 
         /// <summary>
         /// Determines if this is the proper Matcher for the mail rule.
@@ -51,8 +49,9 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether this rule matcher can handle this rule.</returns>
         public bool IsProperMatcher(MailRule rule)
         {
-            return rule.MailPattern == MailPattern.Daily    // Rule follows the daily pattern
-                   && rule.DayOfWeekRestricted;             // Rule is restricted to certain days of the week.
+            // Is a weekly run mail pattern which runs certain numbers of weeks.
+            return rule.MailPattern == MailPattern.Weekly
+                   && rule.NumberOf.HasValue;
         }
 
         /// <summary>
@@ -63,9 +62,8 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether the rule should be ran.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return this.subMatchers.All(sm => sm.ShouldBeRun(rule, startTime));
-        } 
-
-        #endregion
+            return this.subRules.All(sr => sr.ShouldBeRun(rule, startTime)) // Matches the day of week.
+                   && rule.LastSent.GetValueOrDefault().AddDays(rule.NumberOf.Value * 7) <= startTime; // Has not run this week
+        }
     }
 }

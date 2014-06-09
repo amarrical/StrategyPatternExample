@@ -36,10 +36,11 @@ namespace RuleBender.RuleParsers.RuleEliminators
         {
             this.eliminators = eliminators ?? new List<IMailRuleEliminator>
                                               {
-                                                  new InactiveMailRuleEliminator(),
-                                                  new MaxRecurrencesMailRuleEliminator(),
+                                                  new InactiveEliminator(),
+                                                  new MaxRecurrencesEliminator(),
                                                   new PastEndDateEliminiator(),
-                                                  new RanTodayMailRuleEliminator()
+                                                  new RanTodayEliminator(),
+                                                  new StartDateEliminator()
                                               };
         } 
 

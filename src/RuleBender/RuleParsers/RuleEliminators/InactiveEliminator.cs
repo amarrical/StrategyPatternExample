@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="InactiveMailRuleEliminator.cs" company="ImprovingEnterprises">
+// <copyright file="InactiveEliminator.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
@@ -13,7 +13,7 @@ namespace RuleBender.RuleParsers.RuleEliminators
     /// <summary>
     /// Eliminates a MailRule if it is not active.
     /// </summary>
-    public class InactiveMailRuleEliminator : IMailRuleEliminator
+    public class InactiveEliminator : IMailRuleEliminator
     {
         #region [ IMailRuleEliminator Methods ]
 
