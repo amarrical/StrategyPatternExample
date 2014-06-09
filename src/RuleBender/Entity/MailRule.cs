@@ -59,7 +59,7 @@ namespace RuleBender.Entity
         /// <summary>
         /// Gets a value indicating whether the rule is restricted to a particular day of week.
         /// </summary>
-        public bool DayOfWeekRestricted
+        public bool IsDayOfWeekRestricted
         {
             get { return this.DaysOfWeek.Any(d => d.Value); }
         }

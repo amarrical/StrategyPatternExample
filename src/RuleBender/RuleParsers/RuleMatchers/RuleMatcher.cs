@@ -37,10 +37,10 @@ namespace RuleBender.RuleParsers.RuleMatchers
             this.matchers = matchers ?? new List<IMailRuleMatcher>
                                         {
                                             new WeeklyMatcher(),
-                                            new DayOfMonthHandler(),
-                                            new DayOfMonthOfYearHandler(),
+                                            new DayOfMonthMatcher(),
+                                            new DayOfMonthOfYearMatcher(),
                                             new DayOfWeekOfMonthHandler(),
-                                            new DayOfYearHandler(),
+                                            new DayOfYearMatcher(),
                                             new EveryDayMatcher(),
                                             new EveryWeekDayHandler()
                                         };
@@ -56,7 +56,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <param name="mailRules">MailRules to be evaluated to determine if they should send messages.</param>
         /// <param name="startTime">Start time of the process.</param>
         /// <returns>A collection of MailRules which should send messages.</returns>
-        public IList<MailRule> GetMatchedRules(IList<MailRule> mailRules, DateTime startTime)
+        public IList<MailRule> GetMatchedRules(IEnumerable<MailRule> mailRules, DateTime startTime)
         {
             return mailRules.ToList().Where(rule => this.matchers.Where(m => m.IsProperMatcher(rule)).Any(m => m.ShouldBeRun(rule, startTime))).ToList();
         } 

@@ -17,15 +17,6 @@ namespace RuleBender.RuleParsers.RuleEliminators
     /// </summary>
     public class RuleEliminator : IRuleEliminator
     {
-        #region [ Fields ]
-
-        /// <summary>
-        /// Eliminators to determine which mail rules can be removed.
-        /// </summary>
-        private readonly List<IMailRuleEliminator> eliminators;
-
-        #endregion
-
         #region [ Constructors ]
 
         /// <summary>
@@ -34,7 +25,7 @@ namespace RuleBender.RuleParsers.RuleEliminators
         /// <param name="eliminators">Eliminators to determine which MailRules can be removed.</param>
         public RuleEliminator(List<IMailRuleEliminator> eliminators = null)
         {
-            this.eliminators = eliminators ?? new List<IMailRuleEliminator>
+            this.Eliminators = eliminators ?? new List<IMailRuleEliminator>
                                               {
                                                   new InactiveEliminator(),
                                                   new MaxRecurrencesEliminator(),
@@ -43,6 +34,15 @@ namespace RuleBender.RuleParsers.RuleEliminators
                                                   new StartDateEliminator()
                                               };
         } 
+
+        #endregion
+
+        #region [ Properties ]
+
+        /// <summary>
+        /// Gets the eliminators which determine which mail rules can be removed.
+        /// </summary>
+        public List<IMailRuleEliminator> Eliminators { get; private set; }
 
         #endregion
 
@@ -56,7 +56,7 @@ namespace RuleBender.RuleParsers.RuleEliminators
         /// <returns>A collection of mail rules which have not been eliminated.</returns>
         public IList<MailRule> GetMailRulesNotEliminated(IEnumerable<MailRule> mailRules, DateTime startTime)
         {
-            return mailRules.ToList().Where(rule => this.eliminators.Where(e => e.IsProperEliminator(rule)).All(e => !e.ShouldBeEliminated(rule, startTime))).ToList();
+            return mailRules.ToList().Where(rule => this.Eliminators.Where(e => e.IsProperEliminator(rule)).All(e => !e.ShouldBeEliminated(rule, startTime))).ToList();
         } 
 
         #endregion

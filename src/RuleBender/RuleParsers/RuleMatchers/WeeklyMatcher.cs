@@ -31,16 +31,17 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <summary>
         /// Initializes a new instance of the <see cref="WeeklyMatcher"/> class.
         /// </summary>
-        /// <param name="subRules">Sub Rules which make up the matching criteria.</param>
-        public WeeklyMatcher(IList<ISubMatcher> subRules = null)
+        public WeeklyMatcher()
         {
-            this.subRules = subRules ?? new List<ISubMatcher>
-                {
-                    new IsDayOfWeekSubMatcher()
-                };
+            this.subRules = new List<ISubMatcher>
+                            {
+                                new IsDayOfWeekSubMatcher()
+                            };
         }
 
         #endregion
+
+        #region [ IRuleMatcher Methods ]
 
         /// <summary>
         /// Determines if this is the proper Matcher for the mail rule.
@@ -62,8 +63,10 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether the rule should be ran.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return this.subRules.All(sr => sr.ShouldBeRun(rule, startTime)) // Matches the day of week.
-                   && rule.LastSent.GetValueOrDefault().AddDays(rule.NumberOf.Value * 7) <= startTime; // Has not run this week
-        }
+            return this.subRules.All(sr => sr.ShouldBeRun(rule, startTime))                             // Matches the day of week.
+                   && rule.LastSent.GetValueOrDefault().AddDays(rule.NumberOf.Value * 7) <= startTime;  // Has not run this week
+        } 
+
+        #endregion
     }
 }

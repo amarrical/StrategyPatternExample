@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EliminatorTests\InactiveEliminatorTests.cs" />
+    <Compile Include="EliminatorTests\MaxRecurrencesEliminatorTests.cs" />
+    <Compile Include="EliminatorTests\PastEndDateEliminatorTests.cs" />
+    <Compile Include="EliminatorTests\RanTodayEliminatorTests.cs" />
+    <Compile Include="EliminatorTests\RuleEliminatorTests.cs" />
+    <Compile Include="EliminatorTests\StartDateEliminatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MailSenderTests\MailSenderTests.cs" />
   </ItemGroup>

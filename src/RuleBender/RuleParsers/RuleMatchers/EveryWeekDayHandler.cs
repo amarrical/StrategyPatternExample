@@ -7,7 +7,6 @@
 namespace RuleBender.RuleParsers.RuleMatchers
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -52,7 +51,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
         public bool IsProperMatcher(MailRule rule)
         {
             return rule.MailPattern == MailPattern.Daily    // Rule follows the daily pattern
-                   && rule.DayOfWeekRestricted;             // Rule is restricted to certain days of the week.
+                   && rule.IsDayOfWeekRestricted;             // Rule is restricted to certain days of the week.
         }
 
         /// <summary>

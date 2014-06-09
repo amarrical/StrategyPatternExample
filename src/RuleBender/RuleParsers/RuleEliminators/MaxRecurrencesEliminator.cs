@@ -37,7 +37,7 @@ namespace RuleBender.RuleParsers.RuleEliminators
         public bool ShouldBeEliminated(MailRule rule, DateTime startTime)
         {
             // Eliminate if the rule has been it's maximum number of times.
-            return rule.MaxOccurences >= rule.TimesSent;
+            return rule.MaxOccurences <= rule.TimesSent;
         } 
 
         #endregion

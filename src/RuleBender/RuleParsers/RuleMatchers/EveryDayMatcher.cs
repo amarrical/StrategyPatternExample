@@ -25,7 +25,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
         public bool IsProperMatcher(MailRule rule)
         {
             return rule.MailPattern == MailPattern.Daily    // Runs on the daily pattern.
-                   && !rule.DayOfWeekRestricted;            // Is not restricted to certain days of the week.
+                   && !rule.IsDayOfWeekRestricted;            // Is not restricted to certain days of the week.
         }
 
         /// <summary>

@@ -24,7 +24,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <param name="mailRules">MailRules to be evaluated to determine if they should send messages.</param>
         /// <param name="startTime">Start time of the process.</param>
         /// <returns>A collection of MailRules which should send messages.</returns>
-        IList<MailRule> GetMatchedRules(IList<MailRule> mailRules, DateTime startTime);
+        IList<MailRule> GetMatchedRules(IEnumerable<MailRule> mailRules, DateTime startTime);
 
         #endregion
     }

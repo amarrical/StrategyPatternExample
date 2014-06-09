@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DayOfMonthHandler.cs" company="ImprovingEnterprises">
+// <copyright file="DayOfMonthMatcher.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
@@ -13,9 +13,9 @@ namespace RuleBender.RuleParsers.RuleMatchers
     using RuleBender.Entity;
 
     /// <summary>
-    /// Handles matching a rule if it is set to run on a particular day of a month.
+    /// Matches a MailRule configured to run on a particular day every X months.
     /// </summary>
-    public class DayOfMonthHandler : IMailRuleMatcher
+    public class DayOfMonthMatcher : IMailRuleMatcher
     {
         #region [ Fields ]
 
@@ -29,10 +29,10 @@ namespace RuleBender.RuleParsers.RuleMatchers
         #region [ Constructors ]
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DayOfMonthHandler"/> class.
+        /// Initializes a new instance of the <see cref="DayOfMonthMatcher"/> class.
         /// </summary>
         /// <param name="subRules">Sub Rules which make up the matching criteria.</param>
-        public DayOfMonthHandler(IList<ISubMatcher> subRules = null)
+        public DayOfMonthMatcher(IList<ISubMatcher> subRules = null)
         {
             this.subRules = subRules ?? new List<ISubMatcher>
                 {
@@ -43,6 +43,8 @@ namespace RuleBender.RuleParsers.RuleMatchers
 
         #endregion
 
+        #region [ IMailRuleMatcher Methods ]
+
         /// <summary>
         /// Determines if this is the proper Matcher for the mail rule.
         /// </summary>
@@ -52,7 +54,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
         {
             return rule.MailPattern == MailPattern.Montly   // Pattern is set to monthly
                    && rule.DayNumber.HasValue               // Rule is set to a particular day of the month 
-                   && !rule.DayOfWeekRestricted;            // Rule is not set to run on particular days of the week.
+                   && !rule.IsDayOfWeekRestricted;            // Rule is not set to run on particular days of the week.
         }
 
         /// <summary>
@@ -63,7 +65,9 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether the rule should be ran.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return this.subRules.All(sr => sr.ShouldBeRun(rule, startTime));
-        }
+            return this.subRules.All(sr => sr.ShouldBeRun(rule, startTime)); // All SubMatchers satisfied (DayOfMonth, MonthlyRecurrence).
+        } 
+
+        #endregion
     }
 }

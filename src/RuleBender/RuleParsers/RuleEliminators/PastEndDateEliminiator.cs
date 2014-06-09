@@ -38,7 +38,7 @@ namespace RuleBender.RuleParsers.RuleEliminators
         {
             // Eliminate if past end date.
             return rule.EndDate.GetValueOrDefault().Date < startTime.Date;
-        } 
+        }
 
         #endregion
     }
