@@ -54,7 +54,8 @@ namespace RuleBender.RuleParsers.RuleMatchers
         public bool IsProperMatcher(MailRule rule)
         {
             return rule.MailPattern == MailPattern.Yearly   // Rule runs on a yearly pattern.
-                   && !rule.IsDayOfWeekRestricted;          // Rule is not restricted to a day of week.
+                   && !rule.IsDayOfWeekRestricted           // Rule is not restricted to a day of week.
+                   && rule.DayNumber.HasValue;              // Rule configured to run on a day of month.
         }
 
         /// <summary>

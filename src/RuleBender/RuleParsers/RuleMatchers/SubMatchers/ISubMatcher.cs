@@ -15,12 +15,16 @@ namespace RuleBender.RuleParsers.RuleMatchers.SubMatchers
     /// </summary>
     public interface ISubMatcher
     {
+        #region [ Methods ]
+
         /// <summary>
         /// Determines if a rule matches the SubRule.
         /// </summary>
         /// <param name="rule">The MailRule to be evaluated.</param>
         /// <param name="startTime">The time at which the process started.</param>
         /// <returns>A value indicating whether the rule matches the SubRule.</returns>
-        bool ShouldBeRun(MailRule rule, DateTime startTime);
+        bool ShouldBeRun(MailRule rule, DateTime startTime); 
+
+        #endregion
     }
 }
