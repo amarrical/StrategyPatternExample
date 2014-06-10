@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Anthony Marrical</author>
 //-----------------------------------------------------------------------
-namespace RuleBender.RuleParsers.RuleMatchers
+namespace RuleBender.RuleParsers.Combined
 {
     using System;
     using System.Collections.Generic;

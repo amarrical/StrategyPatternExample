@@ -45,7 +45,6 @@ namespace RuleBender.Test.RuleMatcherTests.SubRuleMatcherTests
 
             Assert.IsTrue(startTime.DayOfWeek == DayOfWeek.Monday, "Test is not valid");
 
-
             // Act
             var result = this.subMatcher.ShouldBeRun(mailRule, startTime);
 
@@ -64,7 +63,6 @@ namespace RuleBender.Test.RuleMatcherTests.SubRuleMatcherTests
 
             Assert.IsTrue(startTime.DayOfWeek == DayOfWeek.Tuesday, "Test is not valid");
 
-
             // Act
             var result = this.subMatcher.ShouldBeRun(mailRule, startTime);
 
@@ -82,7 +80,6 @@ namespace RuleBender.Test.RuleMatcherTests.SubRuleMatcherTests
             var startTime = new DateTime(2014, 6, 24);
 
             Assert.IsTrue(startTime.DayOfWeek == DayOfWeek.Tuesday, "Test is not valid");
-
 
             // Act
             var result = this.subMatcher.ShouldBeRun(mailRule, startTime);

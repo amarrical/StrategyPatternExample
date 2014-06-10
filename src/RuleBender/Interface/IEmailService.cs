@@ -21,9 +21,9 @@ namespace RuleBender.Interface
         /// <summary>
         /// Sends mail messages.
         /// </summary>
-        /// <param name="mailRules">The mail rules containing messages which should be run.</param>
+        /// <param name="mailRules">The MailRules containing messages which should be run.</param>
         /// <param name="startTime">Time at which the process started.</param>
-        /// <returns>Updated rules based on usage.</returns>
+        /// <returns>Updated MailRules based on usage.</returns>
         IList<MailRule> Send(IList<MailRule> mailRules, DateTime startTime);
 
         #endregion

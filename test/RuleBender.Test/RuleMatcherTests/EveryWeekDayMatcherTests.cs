@@ -116,10 +116,10 @@ namespace RuleBender.Test.RuleMatcherTests
         #region [ ShouldBeRun ]
 
         [Test]
-        public void ShouldBeRunReturnsFalseIfDayOfWeekNotMet()
+        public void ShouldBeRunReturnsTrueIfAllSubMatchersMet()
         {
             // Assemble
-            var startTime   = new DateTime(2014, 5, 12);
+            var startTime   = new DateTime(2014, 5, 13);
             var mailRule    = new MailRule
                                   {
                                       MailPattern   = MailPattern.Daily,
@@ -135,10 +135,10 @@ namespace RuleBender.Test.RuleMatcherTests
         }
 
         [Test]
-        public void ShouldBeRunReturnsTrueIfAllSubMatchersMet()
+        public void ShouldBeRunReturnsFalseIfDayOfWeekNotMet()
         {
             // Assemble
-            var startTime   = new DateTime(2014, 5, 13);
+            var startTime   = new DateTime(2014, 5, 12);
             var mailRule    = new MailRule
                                   {
                                       MailPattern   = MailPattern.Daily,

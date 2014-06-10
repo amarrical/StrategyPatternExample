@@ -19,7 +19,7 @@ namespace RuleBender.Logic
         #region [ Fields ]
 
         /// <summary>
-        /// Repository to handle persistence of email sending rules.
+        /// Repository to handle persistence of MailRules.
         /// </summary>
         private readonly IRuleRepo ruleRepo;
 
@@ -29,7 +29,7 @@ namespace RuleBender.Logic
         private readonly IEmailService emailService;
 
         /// <summary>
-        /// Parser to determine which rules should be sent.
+        /// Parser to determine which MailRules should be sent.
         /// </summary>
         private readonly IRuleParser ruleParser;
 
@@ -40,14 +40,14 @@ namespace RuleBender.Logic
         /// <summary>
         /// Initializes a new instance of the MailSender class.
         /// </summary>
-        /// <param name="ruleRepo">Repository to handle persistence of email sending rules.</param>
+        /// <param name="ruleRepo">Repository to handle persistence of MailRules.</param>
         /// <param name="emailService">Service to send emails.</param>
-        /// <param name="ruleParser">Parser to determine which rules should be sent.</param>
+        /// <param name="ruleParser">Parser to determine which MailRules should be sent.</param>
         public MailSender(IRuleRepo ruleRepo, IEmailService emailService, IRuleParser ruleParser)
         {
-            this.ruleRepo = ruleRepo;
-            this.emailService = emailService;
-            this.ruleParser = ruleParser;
+            this.ruleRepo       = ruleRepo;
+            this.emailService   = emailService;
+            this.ruleParser     = ruleParser;
         }
 
         #endregion
@@ -55,14 +55,14 @@ namespace RuleBender.Logic
         #region [ Methods ]
 
         /// <summary>
-        /// Sends out email messages according to the existing rules.
+        /// Sends out email messages according to the existing MailRules.
         /// </summary>
         /// <param name="startTime">The start time of the process.</param>
         public void SendMessages(DateTime startTime)
         {
-            var rules = this.ruleRepo.GetMailRules();
-            var rulesToRun = this.ruleParser.ParseRules(rules, startTime);
-            var sentRules = this.emailService.Send(rulesToRun, startTime);
+            var rules       = this.ruleRepo.GetMailRules();
+            var rulesToRun  = this.ruleParser.ParseRules(rules, startTime);
+            var sentRules   = this.emailService.Send(rulesToRun, startTime);
             this.ruleRepo.SaveRunRules(sentRules);
         }
 

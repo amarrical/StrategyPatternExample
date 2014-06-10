@@ -37,20 +37,7 @@ namespace RuleBender.Test.EliminatorTests
         #region [ IsProperEliminator Tests ]
 
         [Test]
-        public void IsProperEliminatorReturnsFalseIfStartDateNotSet()
-        {
-            // Assemble
-            var mailRule = new MailRule { StartDate = null };
-
-            // Act
-            var result = this.eliminator.IsProperEliminator(mailRule);
-
-            // Assert
-            Assert.IsFalse(result);
-        }
-
-        [Test]
-        public void IsProperHandlerReturnsTrueIfStartDateIsSet()
+        public void IsProperHandlerReturnsTrueIfRuleStartDateIsSet()
         {
             // Assemble
             var mailRule = new MailRule { StartDate = DateTime.Now };
@@ -62,9 +49,39 @@ namespace RuleBender.Test.EliminatorTests
             Assert.IsTrue(result);
         }
 
+        [Test]
+        public void IsProperEliminatorReturnsFalseIfRuleStartDateNotSet()
+        {
+            // Assemble
+            var mailRule = new MailRule { StartDate = null };
+
+            // Act
+            var result = this.eliminator.IsProperEliminator(mailRule);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
         #endregion
 
         #region [ ShouldBeEliminated Tests ]
+
+        [Test]
+        public void ShouldBeEliminatedReturnsTrueIfStartDateIsBeforeStartTime()
+        {
+            // Assemble
+            var startTime = new DateTime(2014, 6, 16);
+            var startDate = new DateTime(2014, 6, 15);
+            Assert.IsTrue(startDate < startTime, "Test is not Valid");
+
+            var mailRule = new MailRule { StartDate = startDate };
+
+            // Act
+            var result = this.eliminator.ShouldBeEliminated(mailRule, startTime);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
 
         [Test]
         public void ShouldBeEliminatedReturnsFalseIfStartDateIsPastStartTime()
@@ -98,23 +115,6 @@ namespace RuleBender.Test.EliminatorTests
 
             // Assert
             Assert.IsFalse(result);
-        }
-
-        [Test]
-        public void ShouldBeEliminatedReturnsTrueIfStartDateIsBeforeStartTime()
-        {
-            // Assemble
-            var startTime = new DateTime(2014, 6, 16);
-            var startDate = new DateTime(2014, 6, 15);
-            Assert.IsTrue(startDate < startTime, "Test is not Valid");
-
-            var mailRule = new MailRule { StartDate = startDate };
-
-            // Act
-            var result = this.eliminator.ShouldBeEliminated(mailRule, startTime);
-
-            // Assert
-            Assert.IsTrue(result);
         }
 
         #endregion

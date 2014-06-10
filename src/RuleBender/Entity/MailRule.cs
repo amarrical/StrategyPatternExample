@@ -8,7 +8,6 @@ namespace RuleBender.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using System.Net.Mail;
 
@@ -32,12 +31,12 @@ namespace RuleBender.Entity
         #region [ Properties ]
 
         /// <summary>
-        /// Gets or sets the id for the mail rule.
+        /// Gets or sets the Id.
         /// </summary>
         public int RuleId { get; set; }
 
         /// <summary>
-        /// Gets or sets a short description of the mail rule.
+        /// Gets or sets a short description.
         /// </summary>
         public string Description { get; set; }
 

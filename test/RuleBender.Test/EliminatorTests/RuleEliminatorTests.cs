@@ -16,6 +16,7 @@ namespace RuleBender.Test.EliminatorTests
     using Rhino.Mocks;
 
     using RuleBender.Entity;
+    using RuleBender.RuleParsers.Combined;
     using RuleBender.RuleParsers.RuleEliminators;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules",
@@ -33,7 +34,7 @@ namespace RuleBender.Test.EliminatorTests
         #region [ Tests ]
 
         [Test]
-        public void ConstructorAssignsproperDefaultEliminators()
+        public void ConstructorAssignsProperDefaultEliminators()
         {
             // Assemble
             this.ruleEliminator = new RuleEliminator();
@@ -51,7 +52,7 @@ namespace RuleBender.Test.EliminatorTests
         }
 
         [Test]
-        public void GetMailRulesRejectsMailRuleIfAnyEliminatorRejectsIt()
+        public void GetMailRulesNotEliminatedRejectsMailRuleIfAnyEliminatorRejectsIt()
         {
             // Assemble
             var startTime = DateTime.Now;

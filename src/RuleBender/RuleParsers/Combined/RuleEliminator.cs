@@ -4,13 +4,14 @@
 // </copyright>
 // <author>Anthony Marrical</author>
 //-----------------------------------------------------------------------
-namespace RuleBender.RuleParsers.RuleEliminators
+namespace RuleBender.RuleParsers.Combined
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using RuleBender.Entity;
+    using RuleBender.RuleParsers.RuleEliminators;
 
     /// <summary>
     /// Implements IRuleEliminator to return a list of MailRules to be matched.
@@ -53,10 +54,13 @@ namespace RuleBender.RuleParsers.RuleEliminators
         /// </summary>
         /// <param name="mailRules">MailRules to be parsed for eliminated.</param>
         /// <param name="startTime">Start time of the process.</param>
-        /// <returns>A collection of mail rules which have not been eliminated.</returns>
+        /// <returns>A collection of MailRules which have not been eliminated.</returns>
         public IList<MailRule> GetMailRulesNotEliminated(IEnumerable<MailRule> mailRules, DateTime startTime)
         {
-            return mailRules.ToList().Where(rule => this.Eliminators.Where(e => e.IsProperEliminator(rule)).All(e => !e.ShouldBeEliminated(rule, startTime))).ToList();
+            return
+                mailRules.ToList()
+                         .Where(rule => this.Eliminators.Where(e => e.IsProperEliminator(rule)).All(e => !e.ShouldBeEliminated(rule, startTime)))
+                         .ToList();
         } 
 
         #endregion

@@ -4,28 +4,20 @@
 // </copyright>
 // <author>Anthony Marrical</author>
 //-----------------------------------------------------------------------
-namespace RuleBender.RuleParsers.RuleMatchers
+namespace RuleBender.RuleParsers.Combined
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using RuleBender.Entity;
+    using RuleBender.RuleParsers.RuleMatchers;
 
     /// <summary>
     /// Implements IRuleMatcher to return a list of MailRules which send their messages.
     /// </summary>
     public class RuleMatcher : IRuleMatcher
     {
-        #region [ Fields ]
-
-        /// <summary>
-        /// Matchers to determine which MailRules should send messages.
-        /// </summary>
-        private readonly List<IMailRuleMatcher> matchers;
-
-        #endregion
-
         #region [ Constructors ]
 
         /// <summary>
@@ -34,7 +26,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <param name="matchers">A collection of IMailRuleMatchers to determine which MailRules should send messages.</param>
         public RuleMatcher(List<IMailRuleMatcher> matchers = null)
         {
-            this.matchers = matchers ?? new List<IMailRuleMatcher>
+            this.Matchers = matchers ?? new List<IMailRuleMatcher>
                                         {
                                             new WeeklyMatcher(),
                                             new DateOfMonthMatcher(),
@@ -48,6 +40,15 @@ namespace RuleBender.RuleParsers.RuleMatchers
 
         #endregion
 
+        #region [ Properties ]
+
+        /// <summary>
+        /// Gets the Matchers used to determine which MailRules should send messages.
+        /// </summary>
+        public List<IMailRuleMatcher> Matchers { get; private set; }
+
+        #endregion
+
         #region [ IRuleMatcher Methods ]
 
         /// <summary>
@@ -58,7 +59,10 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A collection of MailRules which should send messages.</returns>
         public IList<MailRule> GetMatchedRules(IEnumerable<MailRule> mailRules, DateTime startTime)
         {
-            return mailRules.ToList().Where(rule => this.matchers.Where(m => m.IsProperMatcher(rule)).Any(m => m.ShouldBeRun(rule, startTime))).ToList();
+            return
+                mailRules.ToList()
+                         .Where(rule => this.Matchers.Where(m => m.IsProperMatcher(rule)).Any(m => m.ShouldBeRun(rule, startTime)))
+                         .ToList();
         } 
 
         #endregion

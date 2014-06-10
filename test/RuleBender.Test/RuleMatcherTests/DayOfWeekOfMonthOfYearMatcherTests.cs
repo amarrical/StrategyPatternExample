@@ -134,6 +134,28 @@ namespace RuleBender.Test.RuleMatcherTests
         #region [ ShouldBeRun ]
 
         [Test]
+        public void ShouldBeRunReturnsTrueIfAllSubMatchersMet()
+        {
+            // Assemble
+            var startTime   = new DateTime(2014, 6, 10);
+            var mailRule    = new MailRule
+                                  {
+                                      MailPattern   = MailPattern.Yearly,
+                                      DaysOfWeek    = new Dictionary<DayOfWeek, bool> { { DayOfWeek.Tuesday, true } },
+                                      DayNumber     = 2,
+                                      Month         = 6,
+                                      NumberOf      = 2,
+                                      LastSent      = new DateTime(2012, 6, 5)
+                                  };
+
+            // Act
+            var result = this.matcher.ShouldBeRun(mailRule, startTime);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
         public void ShouldBeRunReturnsFalseIfYearlyRecurrenceNotMet()
         {
             // Assemble
@@ -220,28 +242,6 @@ namespace RuleBender.Test.RuleMatcherTests
 
             // Assert
             Assert.IsFalse(result);
-        }
-
-        [Test]
-        public void ShouldBeRunReturnsTrueIfAllSubMatchersMet()
-        {
-            // Assemble
-            var startTime   = new DateTime(2014, 6, 10);
-            var mailRule    = new MailRule
-                                  {
-                                      MailPattern   = MailPattern.Yearly,
-                                      DaysOfWeek    = new Dictionary<DayOfWeek, bool> { { DayOfWeek.Tuesday, true } },
-                                      DayNumber     = 2,
-                                      Month         = 6,
-                                      NumberOf      = 2,
-                                      LastSent      = new DateTime(2012, 6, 5)
-                                  };
-
-            // Act
-            var result = this.matcher.ShouldBeRun(mailRule, startTime);
-
-            // Assert
-            Assert.IsTrue(result);
         }
 
         #endregion

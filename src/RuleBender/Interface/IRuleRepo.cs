@@ -18,15 +18,15 @@ namespace RuleBender.Interface
         #region [ Methods ]
 
         /// <summary>
-        /// Gets all mail rules from store.
+        /// Gets all MailRules from store.
         /// </summary>
         /// <returns>A collection of MailRules</returns>
         IList<MailRule> GetMailRules();
 
         /// <summary>
-        /// Saves the updated rules which were run.
+        /// Saves the updated MailRules which were run.
         /// </summary>
-        /// <param name="mailRules">The rules which need to be updated.</param>
+        /// <param name="mailRules">The MailRules which need to be updated.</param>
         void SaveRunRules(IList<MailRule> mailRules);
 
         #endregion

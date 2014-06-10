@@ -136,6 +136,26 @@ namespace RuleBender.Test.RuleMatcherTests
         #region [ ShouldBeRun ]
 
         [Test]
+        public void ShouldBeRunReturnsTrueIfAllSubMatchersMet()
+        {
+            // Assemble
+            var startTime   = new DateTime(2014, 7, 14);
+            var mailRule    = new MailRule
+                                  {
+                                      MailPattern  = MailPattern.Montly,
+                                      DayNumber    = 14,
+                                      LastSent     = new DateTime(2014, 5, 14),
+                                      NumberOf     = 2
+                                  };
+
+            // Act
+            var result = this.matcher.ShouldBeRun(mailRule, startTime);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
         public void ShouldBeRunReturnsFalseIfDayOfMonthIsMetButRecurrenceIsNot()
         {
             // Assemble
@@ -173,26 +193,6 @@ namespace RuleBender.Test.RuleMatcherTests
 
             // Assert
             Assert.IsFalse(result);
-        }
-
-        [Test]
-        public void ShouldBeRunReturnsTrueIfRecurrenceAndDayOfMonthIsMet()
-        {
-            // Assemble
-            var startTime   = new DateTime(2014, 7, 14);
-            var mailRule    = new MailRule
-                                  {
-                                      MailPattern  = MailPattern.Montly,
-                                      DayNumber    = 14,
-                                      LastSent     = new DateTime(2014, 5, 14),
-                                      NumberOf     = 2
-                                  };
-
-            // Act
-            var result = this.matcher.ShouldBeRun(mailRule, startTime);
-
-            // Assert
-            Assert.IsTrue(result);
         }
 
         #endregion

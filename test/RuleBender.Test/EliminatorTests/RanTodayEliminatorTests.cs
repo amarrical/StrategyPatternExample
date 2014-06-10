@@ -37,7 +37,7 @@ namespace RuleBender.Test.EliminatorTests
         #region [ IsProperEliminator Tests ]
 
         [Test]
-        public void IsProperEliminatorReturnsTrueForAllTests()
+        public void IsProperEliminatorReturnsTrueForAllRules()
         {
             // Assemble
             var mailRule = new MailRule();
@@ -77,24 +77,6 @@ namespace RuleBender.Test.EliminatorTests
             var startTime   = new DateTime(2014, 6, 14);
             var lastSent    = new DateTime(2014, 6, 14);
             Assert.IsTrue(lastSent == startTime, "Test is not Valid");
-
-            var mailRule = new MailRule { LastSent = lastSent };
-
-            // Act
-            var result = this.eliminator.ShouldBeEliminated(mailRule, startTime);
-
-            // Assert
-            Assert.IsTrue(result);
-        }
-
-        [Test]
-        public void ShouldBeEliminatedReturnsTrueIfLastSentIsOnTheSameDayAsStartDate()
-        {
-            // Assemble
-            var startTime = new DateTime(2014, 6, 14, 23, 40, 15);
-            var lastSent = new DateTime(2014, 6, 14, 22, 4, 4);
-            Assert.IsTrue(lastSent != startTime, "Test is not Valid");
-            Assert.IsTrue(lastSent.Date == startTime.Date, "Test is not Valid");
 
             var mailRule = new MailRule { LastSent = lastSent };
 

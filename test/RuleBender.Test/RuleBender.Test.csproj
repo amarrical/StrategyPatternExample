@@ -51,13 +51,13 @@
     <Compile Include="EliminatorTests\RanTodayEliminatorTests.cs" />
     <Compile Include="EliminatorTests\RuleEliminatorTests.cs" />
     <Compile Include="EliminatorTests\StartDateEliminatorTests.cs" />
-    <Compile Include="RuleMatcherTests\CopyThis.cs" />
     <Compile Include="RuleMatcherTests\DateOfMonthMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\DateOfMonthOfYearMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\DayOfWeekOfMonthOfYearMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\DayOfWeekOfMonthHandlerTests.cs" />
     <Compile Include="RuleMatcherTests\EveryDayMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\EveryWeekDayMatcherTests.cs" />
+    <Compile Include="RuleMatcherTests\RuleMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\SubRuleMatcherTests\IsMonthlyRecurrenceMetSubRuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MailSenderTests\MailSenderTests.cs" />

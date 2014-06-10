@@ -22,12 +22,11 @@ namespace RuleBender.RuleParsers
 
         /// <summary>
         /// Parses rules to determine which rules should be run.
-        /// Based on those rules, it pulls/creates the mail messages to send out.
         /// </summary>
         /// <param name="mailRules">The mail rules to be evaluated.</param>
         /// <param name="startTime">Time at which the process started.</param>
         /// <returns>A collection of MailRules which need to be run.</returns>
-        public IList<MailRule> ParseRules(IList<MailRule> mailRules, DateTime startTime)
+        public IList<MailRule> ParseRules(IEnumerable<MailRule> mailRules, DateTime startTime)
         {
             throw new NotImplementedException();
         }

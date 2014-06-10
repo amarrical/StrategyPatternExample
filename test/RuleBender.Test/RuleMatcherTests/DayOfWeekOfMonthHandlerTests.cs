@@ -137,6 +137,26 @@ namespace RuleBender.Test.RuleMatcherTests
         #region [ ShouldBeRun ]
 
         [Test]
+        public void ShouldBeRunReturnsTrueIfAllSubMatchersMet()
+        {
+            // Assemble
+            var startTime   = new DateTime(2014, 6, 11);
+            var mailRule    = new MailRule
+                                  {
+                                      MailPattern   = MailPattern.Montly,
+                                      DayNumber     = 2,
+                                      DaysOfWeek    = new Dictionary<DayOfWeek, bool> { { DayOfWeek.Wednesday, true } },
+                                      LastSent      = new DateTime(2014, 5, 7)
+                                  };
+
+            // Act
+            var result = this.matcher.ShouldBeRun(mailRule, startTime);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
         public void ShouldBeRunReturnsFalseIfDayOfWeekNotMet()
         {
             // Assemble
@@ -195,26 +215,6 @@ namespace RuleBender.Test.RuleMatcherTests
 
             // Assert
             Assert.IsFalse(result);
-        }
-
-        [Test]
-        public void ShouldBeRunReturnsTrueIfAllSubMatchersMet()
-        {
-            // Assemble
-            var startTime   = new DateTime(2014, 6, 11);
-            var mailRule    = new MailRule
-                                  {
-                                      MailPattern   = MailPattern.Montly,
-                                      DayNumber     = 2,
-                                      DaysOfWeek    = new Dictionary<DayOfWeek, bool> { { DayOfWeek.Wednesday, true } },
-                                      LastSent      = new DateTime(2014, 5, 7)
-                                  };
-
-            // Act
-            var result = this.matcher.ShouldBeRun(mailRule, startTime);
-
-            // Assert
-            Assert.IsTrue(result);
         }
 
         #endregion

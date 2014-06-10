@@ -37,20 +37,7 @@ namespace RuleBender.Test.EliminatorTests
         #region [ IsProperEliminator Tests ]
 
         [Test]
-        public void IsProperHandlerReturnsFalseIfMaxRecurrencesNotSet()
-        {
-            // Assemble
-            var mailRule = new MailRule { MaxOccurences = null };
-
-            // Act
-            var result = this.eliminator.IsProperEliminator(mailRule);
-
-            // Assert
-            Assert.IsFalse(result);
-        }
-
-        [Test]
-        public void IsProperHandlerReturnsTrueIfMaxRecurrencesSet()
+        public void IsProperHandlerReturnsTrueIfRuleMaxRecurrencesSet()
         {
             // Assemble
             var mailRule = new MailRule { MaxOccurences = 4 };
@@ -62,9 +49,41 @@ namespace RuleBender.Test.EliminatorTests
             Assert.IsTrue(result);
         }
 
+        [Test]
+        public void IsProperHandlerReturnsFalseIfRuleMaxRecurrencesNotSet()
+        {
+            // Assemble
+            var mailRule = new MailRule { MaxOccurences = null };
+
+            // Act
+            var result = this.eliminator.IsProperEliminator(mailRule);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
         #endregion
 
         #region [ ShouldBeEliminated Tests ]
+
+        [Test]
+        public void ShouldBeEliminatedReturnsTrueIfMaxRecurrencesGreaterThanTimesSent()
+        {
+            // Assemble
+            var         startTime       = DateTime.Now;
+            const int   MaxRecurrence   = 4;
+            const int   TimesSent       = 6;
+
+            Assert.IsTrue(MaxRecurrence < TimesSent, "Test is not valid");
+
+            var mailRule = new MailRule { MaxOccurences = MaxRecurrence, TimesSent = TimesSent };
+
+            // Act
+            var result = this.eliminator.ShouldBeEliminated(mailRule, startTime);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
 
         [Test]
         public void ShouldBeEliminatedReturnsFalseIfMaxRecurrencesLessThanTimesSent()
@@ -73,6 +92,7 @@ namespace RuleBender.Test.EliminatorTests
             var         startTime       = DateTime.Now;
             const int   MaxRecurrence   = 4;
             const int   TimesSent       = 2;
+
             Assert.IsTrue(MaxRecurrence > TimesSent, "Test is not valid");
 
             var mailRule = new MailRule { MaxOccurences = MaxRecurrence, TimesSent = TimesSent };
@@ -91,25 +111,8 @@ namespace RuleBender.Test.EliminatorTests
             var         startTime       = DateTime.Now;
             const int   MaxRecurrence   = 4;
             const int   TimesSent       = 4;
+
             Assert.IsTrue(MaxRecurrence == TimesSent, "Test is not valid");
-
-            var mailRule = new MailRule { MaxOccurences = MaxRecurrence, TimesSent = TimesSent };
-
-            // Act
-            var result = this.eliminator.ShouldBeEliminated(mailRule, startTime);
-
-            // Assert
-            Assert.IsTrue(result);
-        }
-
-        [Test]
-        public void ShouldBeEliminatedReturnsTrueIfMaxRecurrencesGreaterThanTimesSent()
-        {
-            // Assemble
-            var         startTime       = DateTime.Now;
-            const int   MaxRecurrence   = 4;
-            const int   TimesSent       = 6;
-            Assert.IsTrue(MaxRecurrence < TimesSent, "Test is not valid");
 
             var mailRule = new MailRule { MaxOccurences = MaxRecurrence, TimesSent = TimesSent };
 

@@ -60,8 +60,6 @@ namespace RuleBender.Test.MailSenderTests
 
         #region [ Tests ]
 
-
-
         #endregion
     }
 }

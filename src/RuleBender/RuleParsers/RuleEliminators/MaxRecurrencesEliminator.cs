@@ -18,7 +18,7 @@ namespace RuleBender.RuleParsers.RuleEliminators
         #region [ IMailRuleEliminator Methods ]
 
         /// <summary>
-        /// Determines if this is the proper Eliminator for the mail rule.
+        /// Determines if this is the proper Eliminator for the MailRule.
         /// </summary>
         /// <param name="rule">The MailRule to be evaluated.</param>
         /// <returns>A value indicating whether this eliminator can handle this rule.</returns>
@@ -29,14 +29,14 @@ namespace RuleBender.RuleParsers.RuleEliminators
         }
 
         /// <summary>
-        /// Determines if the mail rule should be eliminated from the list.
+        /// Determines if the MailRule should be eliminated from the list.
         /// </summary>
         /// <param name="rule">The MailRule to be evaluated.</param>
         /// <param name="startTime">The time at which the process started.</param>
         /// <returns>A value indicating whether the rule can be eliminated.</returns>
         public bool ShouldBeEliminated(MailRule rule, DateTime startTime)
         {
-            // Eliminate if the rule has been it's maximum number of times.
+            // Eliminate if the MailRule has been it's run the maximum number of times.
             return rule.MaxOccurences <= rule.TimesSent;
         } 
 

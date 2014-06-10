@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Anthony Marrical</author>
 //-----------------------------------------------------------------------
-namespace RuleBender.RuleParsers.RuleEliminators
+namespace RuleBender.RuleParsers.Combined
 {
     using System;
     using System.Collections.Generic;
@@ -23,7 +23,7 @@ namespace RuleBender.RuleParsers.RuleEliminators
         /// </summary>
         /// <param name="mailRules">MailRules to be parsed for eliminated.</param>
         /// <param name="startTime">Start time of the process.</param>
-        /// <returns>A collection of mail rules which have not been eliminated.</returns>
+        /// <returns>A collection of MailRules which have not been eliminated.</returns>
         IList<MailRule> GetMailRulesNotEliminated(IEnumerable<MailRule> mailRules, DateTime startTime); 
 
         #endregion

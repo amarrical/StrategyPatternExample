@@ -8,10 +8,10 @@ namespace RuleBender.RuleParsers
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using RuleBender.Entity;
     using RuleBender.Interface;
+    using RuleBender.RuleParsers.Combined;
     using RuleBender.RuleParsers.RuleEliminators;
     using RuleBender.RuleParsers.RuleMatchers;
 
@@ -43,8 +43,8 @@ namespace RuleBender.RuleParsers
         /// <param name="ruleMatcher">Logic to match MailRules which need to be run.</param>
         public EasyTestStragetyRuleParser(IRuleEliminator ruleEliminator = null, IRuleMatcher ruleMatcher = null)
         {
-            this.ruleEliminator = ruleEliminator ?? new RuleEliminator();
-            this.ruleMatcher = ruleMatcher ?? new RuleMatcher();
+            this.ruleEliminator = ruleEliminator    ?? new RuleEliminator();
+            this.ruleMatcher    = ruleMatcher       ?? new RuleMatcher();
         }
 
         #endregion
@@ -53,12 +53,11 @@ namespace RuleBender.RuleParsers
 
         /// <summary>
         /// Parses rules to determine which rules should be run.
-        /// Based on those rules, it pulls/creates the mail messages to send out.
         /// </summary>
         /// <param name="mailRules">The mail rules to be evaluated.</param>
         /// <param name="startTime">Time at which the process started.</param>
         /// <returns>A collection of MailRules which need to be run.</returns>
-        public IList<MailRule> ParseRules(IList<MailRule> mailRules, DateTime startTime)
+        public IList<MailRule> ParseRules(IEnumerable<MailRule> mailRules, DateTime startTime)
         {
             var rules = this.ruleEliminator.GetMailRulesNotEliminated(mailRules, startTime);
             return this.ruleMatcher.GetMatchedRules(rules, startTime);
