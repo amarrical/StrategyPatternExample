@@ -25,7 +25,7 @@ namespace RuleBender.RuleParsers.RuleMatchers.SubMatchers
         /// <returns>A value indicating whether the rule matches the SubRule.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return rule.LastSent.GetValueOrDefault().AddYears(rule.NumberOf.GetValueOrDefault()).Year <= startTime.Year;
+            return rule.LastSent.GetValueOrDefault().AddYears(rule.NumberOf.GetValueOrDefault(1)).Year <= startTime.Year;
         }
 
         #endregion

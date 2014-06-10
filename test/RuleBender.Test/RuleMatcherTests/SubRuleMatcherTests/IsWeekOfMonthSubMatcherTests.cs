@@ -20,6 +20,7 @@ namespace RuleBender.Test.RuleMatcherTests.SubRuleMatcherTests
     [TestFixture]
     public class IsWeekOfMonthSubMatcherTests
     {
+        // ToDo: Rework this as example.
         #region [ Fields ]
 
         private IsWeekOfMonthSubMatcher subMatcher;

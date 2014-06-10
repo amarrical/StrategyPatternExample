@@ -18,15 +18,6 @@ namespace RuleBender.RuleParsers.RuleMatchers
     /// </summary>
     public class WeeklyMatcher : IMailRuleMatcher
     {
-        #region [ Fields ]
-
-        /// <summary>
-        /// Sub Rules which make up the matching criteria.
-        /// </summary>
-        private readonly IList<ISubMatcher> subRules;
-
-        #endregion
-
         #region [ Constructors ]
 
         /// <summary>
@@ -34,11 +25,20 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// </summary>
         public WeeklyMatcher()
         {
-            this.subRules = new List<ISubMatcher>
+            this.SubMatchers = new List<ISubMatcher>
                             {
                                 new IsDayOfWeekSubMatcher()
                             };
         }
+
+        #endregion
+
+        #region [ Properties ]
+
+        /// <summary>
+        /// Gets the SubMatchers which make up the matching criteria.
+        /// </summary>
+        public IList<ISubMatcher> SubMatchers { get; private set; }
 
         #endregion
 
@@ -51,9 +51,8 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether this rule matcher can handle this rule.</returns>
         public bool IsProperMatcher(MailRule rule)
         {
-            // Is a weekly run mail pattern which runs certain numbers of weeks.
-            return rule.MailPattern == MailPattern.Weekly
-                   && rule.NumberOf.HasValue;
+            return rule.MailPattern == MailPattern.Weekly   // Rule follows the Weekly pattern.
+                   && rule.IsDayOfWeekRestricted;           // Rule is restricted to a day of week.
         }
 
         /// <summary>
@@ -64,8 +63,8 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether the rule should be ran.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return this.subRules.All(sr => sr.ShouldBeRun(rule, startTime))                             // Matches the day of week.
-                   && rule.LastSent.GetValueOrDefault().AddDays(rule.NumberOf.Value * 7) <= startTime;  // Has not run this week
+            return this.SubMatchers.All(sr => sr.ShouldBeRun(rule, startTime))                                          // Matches the day of week.
+                   && rule.LastSent.GetValueOrDefault().AddDays(rule.NumberOf.GetValueOrDefault(1) * 7) <= startTime;   // Has not run this week
         } 
 
         #endregion

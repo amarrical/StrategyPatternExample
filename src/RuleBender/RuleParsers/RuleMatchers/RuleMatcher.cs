@@ -37,12 +37,12 @@ namespace RuleBender.RuleParsers.RuleMatchers
             this.matchers = matchers ?? new List<IMailRuleMatcher>
                                         {
                                             new WeeklyMatcher(),
-                                            new DayOfMonthMatcher(),
-                                            new DayOfMonthOfYearMatcher(),
+                                            new DateOfMonthMatcher(),
+                                            new DayOfWeekOfMonthOfYearMatcher(),
                                             new DayOfWeekOfMonthHandler(),
-                                            new DayOfYearMatcher(),
+                                            new DateOfMonthOfYearMatcher(),
                                             new EveryDayMatcher(),
-                                            new EveryWeekDayHandler()
+                                            new EveryWeekDayMatcher()
                                         };
         }
 

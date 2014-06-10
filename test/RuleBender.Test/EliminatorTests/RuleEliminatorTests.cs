@@ -42,12 +42,12 @@ namespace RuleBender.Test.EliminatorTests
             var eliminators = this.ruleEliminator.Eliminators;
 
             // Assert
-            Assert.That(eliminators.Count == 5);
-            Assert.That(eliminators.Count(e => e.GetType() == typeof(InactiveEliminator)) == 1);
-            Assert.That(eliminators.Count(e => e.GetType() == typeof(MaxRecurrencesEliminator)) == 1);
-            Assert.That(eliminators.Count(e => e.GetType() == typeof(PastEndDateEliminiator)) == 1);
-            Assert.That(eliminators.Count(e => e.GetType() == typeof(RanTodayEliminator)) == 1);
-            Assert.That(eliminators.Count(e => e.GetType() == typeof(StartDateEliminator)) == 1);
+            Assert.IsTrue(eliminators.Count == 5);
+            Assert.IsTrue(eliminators.Count(e => e.GetType() == typeof(InactiveEliminator)) == 1);
+            Assert.IsTrue(eliminators.Count(e => e.GetType() == typeof(MaxRecurrencesEliminator)) == 1);
+            Assert.IsTrue(eliminators.Count(e => e.GetType() == typeof(PastEndDateEliminiator)) == 1);
+            Assert.IsTrue(eliminators.Count(e => e.GetType() == typeof(RanTodayEliminator)) == 1);
+            Assert.IsTrue(eliminators.Count(e => e.GetType() == typeof(StartDateEliminator)) == 1);
         }
 
         [Test]

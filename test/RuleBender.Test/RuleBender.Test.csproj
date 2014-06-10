@@ -52,7 +52,12 @@
     <Compile Include="EliminatorTests\RuleEliminatorTests.cs" />
     <Compile Include="EliminatorTests\StartDateEliminatorTests.cs" />
     <Compile Include="RuleMatcherTests\CopyThis.cs" />
-    <Compile Include="RuleMatcherTests\DayOfMonthMatcherTests.cs" />
+    <Compile Include="RuleMatcherTests\DateOfMonthMatcherTests.cs" />
+    <Compile Include="RuleMatcherTests\DateOfMonthOfYearMatcherTests.cs" />
+    <Compile Include="RuleMatcherTests\DayOfWeekOfMonthOfYearMatcherTests.cs" />
+    <Compile Include="RuleMatcherTests\DayOfWeekOfMonthHandlerTests.cs" />
+    <Compile Include="RuleMatcherTests\EveryDayMatcherTests.cs" />
+    <Compile Include="RuleMatcherTests\EveryWeekDayMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\SubRuleMatcherTests\IsMonthlyRecurrenceMetSubRuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MailSenderTests\MailSenderTests.cs" />
@@ -61,6 +66,7 @@
     <Compile Include="RuleMatcherTests\SubRuleMatcherTests\IsMonthOfYearSubMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\SubRuleMatcherTests\IsWeekOfMonthSubMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\SubRuleMatcherTests\IsYearlyRecurrenceMetSubMatcherTests.cs" />
+    <Compile Include="RuleMatcherTests\WeeklyMatcherTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

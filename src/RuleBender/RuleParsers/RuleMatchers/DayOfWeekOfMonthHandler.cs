@@ -18,15 +18,6 @@ namespace RuleBender.RuleParsers.RuleMatchers
     /// </summary>
     public class DayOfWeekOfMonthHandler : IMailRuleMatcher
     {
-        #region [ Fields ]
-
-        /// <summary>
-        /// SubMatchers which help determine which MailRules should be sent.
-        /// </summary>
-        private readonly IList<ISubMatcher> subMatchers;
-
-        #endregion
-
         #region [ Constructors ]
 
         /// <summary>
@@ -34,13 +25,22 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// </summary>
         public DayOfWeekOfMonthHandler()
         {
-            this.subMatchers = new List<ISubMatcher>
+            this.SubMatchers = new List<ISubMatcher>
                                {
                                    new IsDayOfWeekSubMatcher(),
                                    new IsWeekOfMonthSubMatcher(),
                                    new IsMonthlyRecurrenceMetSubMatcher()
                                };
         }
+
+        #endregion
+
+        #region [ Properties ]
+
+        /// <summary>
+        /// Gets the SubMatchers which help determine which MailRules should be sent.
+        /// </summary>
+        public IList<ISubMatcher> SubMatchers { get; private set; }
 
         #endregion
 
@@ -66,7 +66,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether the rule should be ran.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return this.subMatchers.All(sm => sm.ShouldBeRun(rule, startTime)); // All SubMatchers satisfied (day of week, week of month, monthly recurrence)
+            return this.SubMatchers.All(sm => sm.ShouldBeRun(rule, startTime)); // All SubMatchers satisfied (day of week, week of month, monthly recurrence)
         } 
 
         #endregion

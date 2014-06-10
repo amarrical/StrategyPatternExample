@@ -50,12 +50,12 @@
     <Compile Include="RuleParsers\RuleEliminators\RanTodayEliminator.cs" />
     <Compile Include="RuleParsers\RuleEliminators\RuleEliminator.cs" />
     <Compile Include="RuleParsers\RuleEliminators\StartDateEliminator.cs" />
-    <Compile Include="RuleParsers\RuleMatchers\DayOfMonthMatcher.cs" />
-    <Compile Include="RuleParsers\RuleMatchers\DayOfMonthOfYearMatcher.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\DateOfMonthMatcher.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\DayOfWeekOfMonthOfYearMatcher.cs" />
     <Compile Include="RuleParsers\RuleMatchers\DayOfWeekOfMonthHandler.cs" />
-    <Compile Include="RuleParsers\RuleMatchers\DayOfYearMatcher.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\DateOfMonthOfYearMatcher.cs" />
     <Compile Include="RuleParsers\RuleMatchers\EveryDayMatcher.cs" />
-    <Compile Include="RuleParsers\RuleMatchers\EveryWeekDayHandler.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\EveryWeekDayMatcher.cs" />
     <Compile Include="RuleParsers\RuleMatchers\IMailRuleMatcher.cs" />
     <Compile Include="RuleParsers\RuleEliminators\IMailRuleEliminator.cs" />
     <Compile Include="RuleParsers\RuleMatchers\IRuleMatcher.cs" />

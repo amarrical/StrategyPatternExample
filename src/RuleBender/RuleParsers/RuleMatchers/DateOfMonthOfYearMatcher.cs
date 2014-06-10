@@ -1,5 +1,5 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="DayOfMonthOfYearMatcher.cs" company="ImprovingEnterprises">
+//-----------------------------------------------------------------------
+// <copyright file="DateOfMonthOfYearMatcher.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
@@ -14,34 +14,33 @@ namespace RuleBender.RuleParsers.RuleMatchers
     using RuleBender.RuleParsers.RuleMatchers.SubMatchers;
 
     /// <summary>
-    /// Matches MailRules which are configured to run on a particular day of week of a particular week of a particular month every X years. 
+    /// Matches a rule set to run on a day of a month every X number of years (X can equal 1)
     /// </summary>
-    public class DayOfMonthOfYearMatcher : IMailRuleMatcher
+    public class DateOfMonthOfYearMatcher : IMailRuleMatcher
     {
-        #region [ Fields ]
-
-        /// <summary>
-        /// SubMatchers which help determine which MailRules should be sent.
-        /// </summary>
-        private readonly IList<ISubMatcher> subMatchers; 
-
-        #endregion
-
         #region [ Constructors ]
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DayOfMonthOfYearMatcher"/> class.
+        /// Initializes a new instance of the <see cref="DateOfMonthOfYearMatcher"/> class.
         /// </summary>
-        public DayOfMonthOfYearMatcher()
+        public DateOfMonthOfYearMatcher()
         {
-            this.subMatchers = new List<ISubMatcher>
+            this.SubMatchers = new List<ISubMatcher>
                                {
-                                   new IsYearlyRecurrenceMetSubMatcher(),
+                                   new IsDayOfMonthSubMatcher(),
                                    new IsMonthOfYearSubMatcher(),
-                                   new IsDayOfWeekSubMatcher(),
-                                   new IsWeekOfMonthSubMatcher()
+                                   new IsYearlyRecurrenceMetSubMatcher()
                                };
         }
+
+        #endregion
+
+        #region [ Properties ]
+
+        /// <summary>
+        /// Gets the SubMatchers which help determine which MailRules should be sent.
+        /// </summary>
+        public IList<ISubMatcher> SubMatchers { get; private set; }
 
         #endregion
 
@@ -54,9 +53,8 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether this rule matcher can handle this rule.</returns>
         public bool IsProperMatcher(MailRule rule)
         {
-            return rule.MailPattern == MailPattern.Yearly   // MailRule is set to a yearly pattern.
-                   && rule.IsDayOfWeekRestricted            // MailRule is restricted to certain days of the week.
-                   && rule.DayNumber.HasValue;              // MailRule is set to a certain week of the month (when IsDayOfWeekRestricted is true)
+            return rule.MailPattern == MailPattern.Yearly   // Rule runs on a yearly pattern.
+                   && !rule.IsDayOfWeekRestricted;          // Rule is not restricted to a day of week.
         }
 
         /// <summary>
@@ -67,8 +65,9 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether the rule should be ran.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return this.subMatchers.All(sm => sm.ShouldBeRun(rule, startTime));
-        } 
+            // Rule satisfies all the SubMatchers (day of month, month of year, yearly recurrence).
+            return this.SubMatchers.All(sm => sm.ShouldBeRun(rule, startTime));
+        }
 
         #endregion
     }

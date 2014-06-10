@@ -37,7 +37,7 @@ namespace RuleBender.RuleParsers.RuleEliminators
         public bool ShouldBeEliminated(MailRule rule, DateTime startTime)
         {
             // Eliminate if past end date.
-            return rule.EndDate.GetValueOrDefault().Date < startTime.Date;
+            return rule.EndDate.Value.Date < startTime.Date;
         }
 
         #endregion
