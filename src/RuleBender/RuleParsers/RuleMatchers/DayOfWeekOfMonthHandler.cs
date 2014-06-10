@@ -55,7 +55,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
         {
             return rule.MailPattern == MailPattern.Montly   // Rule follows the monthly pattern.
                    && rule.DayNumber.HasValue               // Rule is set to repeat on weekly pattern.
-                   && rule.IsDayOfWeekRestricted;             // Rule is restricted to run on certain days of the week.
+                   && rule.IsDayOfWeekRestricted;           // Rule is restricted to run on certain days of the week.
         }
 
         /// <summary>

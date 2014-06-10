@@ -8,6 +8,7 @@ namespace RuleBender.Entity
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Net.Mail;
 
@@ -16,6 +17,18 @@ namespace RuleBender.Entity
     /// </summary>
     public class MailRule
     {
+        #region [ Constructors ]
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MailRule"/> class.
+        /// </summary>
+        public MailRule()
+        {
+            this.DaysOfWeek = new Dictionary<DayOfWeek, bool>();
+        }
+
+        #endregion
+
         #region [ Properties ]
 
         /// <summary>
@@ -65,7 +78,8 @@ namespace RuleBender.Entity
         }
 
         /// <summary>
-        /// Gets or sets a value detailing which day of the month the rule applies. 
+        /// Gets or sets which day of the month the rule applies.
+        /// Gets or sets which week of the month the rule applies if IsDayOfWeekRestricted is true; 
         /// </summary>
         public int? DayNumber { get; set; }
 

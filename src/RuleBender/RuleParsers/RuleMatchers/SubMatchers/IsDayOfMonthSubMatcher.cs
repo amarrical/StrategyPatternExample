@@ -25,7 +25,7 @@ namespace RuleBender.RuleParsers.RuleMatchers.SubMatchers
         /// <returns>A value indicating whether the rule matches the SubRule.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return rule.DayNumber.GetValueOrDefault() == startTime.Day;
+            return rule.DayNumber.Value == startTime.Day;
         }
 
         #endregion

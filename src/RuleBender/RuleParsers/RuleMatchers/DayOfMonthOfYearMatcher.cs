@@ -14,7 +14,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
     using RuleBender.RuleParsers.RuleMatchers.SubMatchers;
 
     /// <summary>
-    /// Matches MailRules which are configured to run on a particular day of a particular month every X years. 
+    /// Matches MailRules which are configured to run on a particular day of week of a particular week of a particular month every X years. 
     /// </summary>
     public class DayOfMonthOfYearMatcher : IMailRuleMatcher
     {
@@ -55,7 +55,8 @@ namespace RuleBender.RuleParsers.RuleMatchers
         public bool IsProperMatcher(MailRule rule)
         {
             return rule.MailPattern == MailPattern.Yearly   // MailRule is set to a yearly pattern.
-                   && rule.IsDayOfWeekRestricted;           // MailRule is restricted to certain days of the week.
+                   && rule.IsDayOfWeekRestricted            // MailRule is restricted to certain days of the week.
+                   && rule.DayNumber.HasValue;              // MailRule is set to a certain week of the month (when IsDayOfWeekRestricted is true)
         }
 
         /// <summary>

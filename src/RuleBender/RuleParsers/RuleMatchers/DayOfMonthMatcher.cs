@@ -18,29 +18,28 @@ namespace RuleBender.RuleParsers.RuleMatchers
     /// </summary>
     public class DayOfMonthMatcher : IMailRuleMatcher
     {
-        #region [ Fields ]
-
-        /// <summary>
-        /// Sub Rules which make up the matching criteria.
-        /// </summary>
-        private readonly IList<ISubMatcher> subRules;
-
-        #endregion
-
         #region [ Constructors ]
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DayOfMonthMatcher"/> class.
         /// </summary>
-        /// <param name="subRules">Sub Rules which make up the matching criteria.</param>
-        public DayOfMonthMatcher(IList<ISubMatcher> subRules = null)
+        public DayOfMonthMatcher()
         {
-            this.subRules = subRules ?? new List<ISubMatcher>
+            this.SubRules = new List<ISubMatcher>
                 {
                     new IsDayOfMonthSubMatcher(),
                     new IsMonthlyRecurrenceMetSubMatcher()
                 };
         }
+
+        #endregion
+
+        #region [ Properties ]
+
+        /// <summary>
+        /// Gets the SubMatchers which make up the matching criteria.
+        /// </summary>
+        public IList<ISubMatcher> SubRules { get; private set; }
 
         #endregion
 
@@ -66,7 +65,7 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether the rule should be ran.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return this.subRules.All(sr => sr.ShouldBeRun(rule, startTime)); // All SubMatchers satisfied (DayOfMonth, MonthlyRecurrence).
+            return this.SubRules.All(sr => sr.ShouldBeRun(rule, startTime)); // All SubMatchers satisfied (DayOfMonth, MonthlyRecurrence).
         } 
 
         #endregion

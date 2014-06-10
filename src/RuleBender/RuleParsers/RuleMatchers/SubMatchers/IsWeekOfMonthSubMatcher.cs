@@ -9,6 +9,7 @@ namespace RuleBender.RuleParsers.RuleMatchers.SubMatchers
     using System;
 
     using RuleBender.Entity;
+    using RuleBender.Extensions;
 
     /// <summary>
     /// Matches if the start time is the proper week of the month configured in the MailRule.
@@ -25,14 +26,7 @@ namespace RuleBender.RuleParsers.RuleMatchers.SubMatchers
         /// <returns>A value indicating whether the rule matches the SubRule.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            // ToDo: Test the crap out of this.
-            var targetWeek = rule.DayNumber.GetValueOrDefault();
-            var monthStart = new DateTime(startTime.Year, startTime.Month, 1).DayOfWeek;
-            var dayOfMonth = monthStart - startTime.DayOfWeek;
-            if (dayOfMonth < 0)
-                dayOfMonth += 7;
-
-            return startTime.AddDays(dayOfMonth * targetWeek).Month == startTime.Month;
+            return rule.DayNumber.Value == startTime.GetWeekOfMonth();
         }
 
         #endregion
