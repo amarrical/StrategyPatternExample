@@ -54,10 +54,10 @@ namespace RuleBender.Test.RuleMatcherTests
         #region [ IsProperMatcher ]
 
         [Test]
-        public void IsProperHandlerReturnsTrueIfRuleMailPatternIsYearlyAndRuleIsNotDayOfWeekRestricted()
+        public void IsProperHandlerReturnsTrueIfRuleMailPatternIsYearlyAndRuleIsNotDayOfWeekRestrictedAndRuleDayNumberHasValue()
         {
             // Assemble
-            var mailRule = new MailRule { MailPattern = MailPattern.Yearly };
+            var mailRule = new MailRule { MailPattern = MailPattern.Yearly, DayNumber = 4 };
 
             Assert.IsFalse(mailRule.IsDayOfWeekRestricted, "Test is not configured properly");
 
@@ -75,7 +75,8 @@ namespace RuleBender.Test.RuleMatcherTests
             var mailRule = new MailRule
                            {
                                MailPattern  = MailPattern.Yearly,
-                               DaysOfWeek   = new Dictionary<DayOfWeek, bool> { { DayOfWeek.Tuesday, true } }
+                               DaysOfWeek   = new Dictionary<DayOfWeek, bool> { { DayOfWeek.Tuesday, true } },
+                               DayNumber = 4
                            };
 
             Assert.IsTrue(mailRule.IsDayOfWeekRestricted, "Test is not configured properly");
@@ -94,7 +95,20 @@ namespace RuleBender.Test.RuleMatcherTests
         public void IsProperHandlerReturnsFalseIfRuleMailPatternIsNotYearly(MailPattern mailPattern)
         {
             // Assemble
-            var mailRule = new MailRule { MailPattern = mailPattern };
+            var mailRule = new MailRule { MailPattern = mailPattern, DayNumber = 4 };
+
+            // Act
+            var result = this.matcher.IsProperMatcher(mailRule);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void IsProperHandlerReturnsFalseIfRuleDayNumberDoesNotHaveValue()
+        {
+            // Assemble
+            var mailRule = new MailRule { MailPattern = MailPattern.Yearly, DayNumber = null };
 
             // Act
             var result = this.matcher.IsProperMatcher(mailRule);

@@ -67,6 +67,7 @@
     <Compile Include="RuleMatcherTests\SubRuleMatcherTests\IsWeekOfMonthSubMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\SubRuleMatcherTests\IsYearlyRecurrenceMetSubMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\WeeklyMatcherTests.cs" />
+    <Compile Include="RuleParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
