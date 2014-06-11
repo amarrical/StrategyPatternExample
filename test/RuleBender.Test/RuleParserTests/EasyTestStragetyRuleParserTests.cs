@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="RuleParserTests.cs" company="ImprovingEnterprises">
+// <copyright file="EasyTestStragetyRuleParserTests.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
 //-----------------------------------------------------------------------
-namespace RuleBender.Test
+namespace RuleBender.Test.RuleParserTests
 {
     using System;
     using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace RuleBender.Test
         "SA1600:ElementsMustBeDocumented",
         Justification = "Tests are self documenting")]
     [TestFixture]
-    public class RuleParserTests
+    public class EasyTestStragetyRuleParserTests
     {
         #region [ Fields ]
 
