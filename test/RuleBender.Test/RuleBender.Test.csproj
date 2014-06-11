@@ -54,7 +54,7 @@
     <Compile Include="RuleMatcherTests\DateOfMonthMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\DateOfMonthOfYearMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\DayOfWeekOfMonthOfYearMatcherTests.cs" />
-    <Compile Include="RuleMatcherTests\DayOfWeekOfMonthHandlerTests.cs" />
+    <Compile Include="RuleMatcherTests\DayOfWeekOfMonthMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\EveryDayMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\EveryWeekDayMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\RuleMatcherTests.cs" />
@@ -68,6 +68,7 @@
     <Compile Include="RuleMatcherTests\SubRuleMatcherTests\IsYearlyRecurrenceMetSubMatcherTests.cs" />
     <Compile Include="RuleMatcherTests\WeeklyMatcherTests.cs" />
     <Compile Include="RuleParserTests\EasyTestStragetyRuleParserTests.cs" />
+    <Compile Include="RuleParserTests\OtherRuleParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

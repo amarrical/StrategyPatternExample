@@ -47,7 +47,7 @@ namespace RuleBender.Test.RuleMatcherTests
             Assert.IsTrue(matchers.Count(m => m.GetType() == typeof(WeeklyMatcher))                 == 1);
             Assert.IsTrue(matchers.Count(m => m.GetType() == typeof(DateOfMonthMatcher))            == 1);
             Assert.IsTrue(matchers.Count(m => m.GetType() == typeof(DayOfWeekOfMonthOfYearMatcher)) == 1);
-            Assert.IsTrue(matchers.Count(m => m.GetType() == typeof(DayOfWeekOfMonthHandler))       == 1);
+            Assert.IsTrue(matchers.Count(m => m.GetType() == typeof(DayOfWeekOfMonthMatcher))       == 1);
             Assert.IsTrue(matchers.Count(m => m.GetType() == typeof(DateOfMonthOfYearMatcher))      == 1);
             Assert.IsTrue(matchers.Count(m => m.GetType() == typeof(EveryDayMatcher))               == 1);
             Assert.IsTrue(matchers.Count(m => m.GetType() == typeof(EveryWeekDayMatcher))           == 1);

@@ -27,6 +27,12 @@ namespace RuleBender.RuleParsers.RuleMatchers.SubMatchers
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
             return rule.DayNumber.Value == startTime.GetWeekOfMonth();
+
+            var weekOfMonth = startTime.GetWeekOfMonth();
+            if (new DateTime(startTime.Year, startTime.Month, 1).DayOfWeek > startTime.DayOfWeek)
+                weekOfMonth--;
+
+            return rule.DayNumber.Value == weekOfMonth;
         }
 
         #endregion

@@ -105,6 +105,51 @@ namespace RuleBender.Test.RuleMatcherTests.SubRuleMatcherTests
             Assert.IsFalse(result);
         }
 
+        [Test]
+        [Ignore("This test is for after fix")]
+        public void ShouldBeRunReturnsFalseOnFirstMondayOfMonthWhenDayNumberIsTwo()
+        {
+            // Assemble
+            var startTime = new DateTime(2014, 7, 7);
+            var mailRule = new MailRule { DayNumber = 2 };
+
+            // Act
+            var result = this.subMatcher.ShouldBeRun(mailRule, startTime);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        [Ignore("This test is for after fix")]
+        public void ShouldBeRunReturnsTrueOnSecondMondayOfMonthWhenDayNumberIsTwo()
+        {
+            // Assemble
+            var startTime = new DateTime(2014, 7, 14);
+            var mailRule = new MailRule { DayNumber = 2 };
+
+            // Act
+            var result = this.subMatcher.ShouldBeRun(mailRule, startTime);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        [Ignore("This test is for after fix")]
+        public void ShouldBeRunReturnsFalseOnThirdMondayOfMonthWhenDayNumberIsTwo()
+        {
+            // Assemble
+            var startTime = new DateTime(2014, 7, 21);
+            var mailRule = new MailRule { DayNumber = 2 };
+
+            // Act
+            var result = this.subMatcher.ShouldBeRun(mailRule, startTime);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
         #endregion
     }
 }

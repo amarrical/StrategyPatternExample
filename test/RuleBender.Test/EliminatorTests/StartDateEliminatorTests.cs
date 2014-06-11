@@ -67,29 +67,12 @@ namespace RuleBender.Test.EliminatorTests
         #region [ ShouldBeEliminated Tests ]
 
         [Test]
-        public void ShouldBeEliminatedReturnsTrueIfStartDateIsBeforeStartTime()
+        public void ShouldBeEliminatedReturnsFalseIfStartDateIsBeforeStartTime()
         {
             // Assemble
             var startTime = new DateTime(2014, 6, 16);
             var startDate = new DateTime(2014, 6, 15);
             Assert.IsTrue(startDate < startTime, "Test is not Valid");
-
-            var mailRule = new MailRule { StartDate = startDate };
-
-            // Act
-            var result = this.eliminator.ShouldBeEliminated(mailRule, startTime);
-
-            // Assert
-            Assert.IsTrue(result);
-        }
-
-        [Test]
-        public void ShouldBeEliminatedReturnsFalseIfStartDateIsPastStartTime()
-        {
-            // Assemble
-            var startTime = new DateTime(2014, 6, 16);
-            var startDate = new DateTime(2014, 6, 17);
-            Assert.IsTrue(startDate > startTime, "Test is not Valid");
 
             var mailRule = new MailRule { StartDate = startDate };
 
@@ -115,6 +98,23 @@ namespace RuleBender.Test.EliminatorTests
 
             // Assert
             Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void ShouldBeEliminatedReturnsTrueIfStartDateIsPastStartTime()
+        {
+            // Assemble
+            var startTime = new DateTime(2014, 6, 16);
+            var startDate = new DateTime(2014, 6, 17);
+            Assert.IsTrue(startDate > startTime, "Test is not Valid");
+
+            var mailRule = new MailRule { StartDate = startDate };
+
+            // Act
+            var result = this.eliminator.ShouldBeEliminated(mailRule, startTime);
+
+            // Assert
+            Assert.IsTrue(result);
         }
 
         #endregion

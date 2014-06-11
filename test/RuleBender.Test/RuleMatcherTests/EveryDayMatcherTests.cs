@@ -158,7 +158,7 @@ namespace RuleBender.Test.RuleMatcherTests
             var result = this.matcher.ShouldBeRun(mailRule, startTime);
 
             // Assert
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
 
         #endregion

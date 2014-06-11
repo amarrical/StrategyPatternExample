@@ -37,8 +37,8 @@ namespace RuleBender.RuleParsers.RuleEliminators
         public bool ShouldBeEliminated(MailRule rule, DateTime startTime)
         {
             // Eliminate if today is before the start date.
-            return rule.StartDate.Value.Date < startTime.Date; 
-        } 
+            return rule.StartDate.Value.Date > startTime.Date;
+        }
 
         #endregion
     }

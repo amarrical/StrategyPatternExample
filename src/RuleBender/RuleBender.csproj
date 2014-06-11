@@ -53,7 +53,7 @@
     <Compile Include="RuleParsers\RuleEliminators\StartDateEliminator.cs" />
     <Compile Include="RuleParsers\RuleMatchers\DateOfMonthMatcher.cs" />
     <Compile Include="RuleParsers\RuleMatchers\DayOfWeekOfMonthOfYearMatcher.cs" />
-    <Compile Include="RuleParsers\RuleMatchers\DayOfWeekOfMonthHandler.cs" />
+    <Compile Include="RuleParsers\RuleMatchers\DayOfWeekOfMonthMatcher.cs" />
     <Compile Include="RuleParsers\RuleMatchers\DateOfMonthOfYearMatcher.cs" />
     <Compile Include="RuleParsers\RuleMatchers\EveryDayMatcher.cs" />
     <Compile Include="RuleParsers\RuleMatchers\EveryWeekDayMatcher.cs" />

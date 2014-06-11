@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DayOfWeekOfMonthHandlerTests.cs" company="ImprovingEnterprises">
+// <copyright file="DayOfWeekOfMonthMatcherTests.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
@@ -21,18 +21,18 @@ namespace RuleBender.Test.RuleMatcherTests
         "SA1600:ElementsMustBeDocumented",
         Justification = "Tests are self documenting")]
     [TestFixture]
-    public class DayOfWeekOfMonthHandlerTests
+    public class DayOfWeekOfMonthMatcherTests
     {
         #region [ Fields ]
 
-        private DayOfWeekOfMonthHandler matcher;
+        private DayOfWeekOfMonthMatcher matcher;
 
         #endregion
 
         [SetUp]
         public void SetUp()
         {
-            this.matcher = new DayOfWeekOfMonthHandler();
+            this.matcher = new DayOfWeekOfMonthMatcher();
         }
 
         #region [ Tests ]

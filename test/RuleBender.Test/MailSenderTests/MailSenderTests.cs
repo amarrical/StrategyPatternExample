@@ -6,6 +6,7 @@
 //-----------------------------------------------------------------------
 namespace RuleBender.Test.MailSenderTests
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
@@ -13,9 +14,9 @@ namespace RuleBender.Test.MailSenderTests
 
     using Rhino.Mocks;
 
+    using RuleBender.Entity;
     using RuleBender.Interface;
     using RuleBender.Logic;
-    using RuleBender.RuleParsers;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules",
         "SA1600:ElementsMustBeDocumented",
@@ -36,17 +37,9 @@ namespace RuleBender.Test.MailSenderTests
         [SetUp]
         public void SetUp()
         {
-            var ruleParsers = new List<IRuleParser>
-                              {
-                                  new UglyFlatRuleParser(),
-                                  new CommentedFlatRuleParser(),
-                                  new StragetyRuleParser(),
-                                  new EasyTestStragetyRuleParser()
-                              };
-
             this.ruleRepo       = MockRepository.GenerateStrictMock<IRuleRepo>();
             this.emailService   = MockRepository.GenerateStrictMock<IEmailService>();
-            this.ruleParser     = ruleParsers[0];
+            this.ruleParser     = MockRepository.GenerateStrictMock<IRuleParser>();
 
             this.sender = new MailSender(this.ruleRepo, this.emailService, this.ruleParser);
         }
@@ -59,6 +52,26 @@ namespace RuleBender.Test.MailSenderTests
         }
 
         #region [ Tests ]
+
+        [Test]
+        public void SendMessagesSendsMessages()
+        {
+            // Assemble
+            var startTime       = DateTime.Now;
+            var mailRules       = new List<MailRule>();
+            var matchedRules    = new List<MailRule>();
+            var sentRules       = new List<MailRule>();
+
+            this.ruleRepo       .Expect(rr => rr.GetMailRules())                    .Return(mailRules);
+            this.ruleParser     .Expect(rp => rp.ParseRules(mailRules, startTime))  .Return(matchedRules);
+            this.emailService   .Expect(es => es.Send(matchedRules, startTime))     .Return(sentRules);
+            this.ruleRepo       .Expect(rr => rr.SaveRunRules(sentRules));
+
+            // Act
+            this.sender.SendMessages(startTime);
+
+            // Assert
+        }
 
         #endregion
     }

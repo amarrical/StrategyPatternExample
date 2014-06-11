@@ -32,17 +32,14 @@ namespace RuleBender.RuleParsers
             var nonEliminatedRules = new List<MailRule>();
             foreach (var rule in mailRules)
             {
-                var keepRule = rule.IsActive;
+                var keepRule = rule.IsActive && rule.LastSent.GetValueOrDefault().Date != startTime.Date;
                 if (rule.MaxOccurences.HasValue)
                     if (rule.TimesSent >= rule.MaxOccurences)
                         keepRule = false;
 
                 if (rule.EndDate.HasValue)
-                    if (rule.EndDate > startTime)
+                    if (rule.EndDate < startTime)
                         keepRule = false;
-
-                if (rule.LastSent.GetValueOrDefault().Date == startTime.Date)
-                    keepRule = false;
 
                 if (rule.StartDate.HasValue)
                     if (rule.StartDate.Value > startTime)
@@ -67,7 +64,7 @@ namespace RuleBender.RuleParsers
 
                         if (!rule.IsDayOfWeekRestricted)
                         {
-                            if (rule.LastSent.GetValueOrDefault().AddDays(rule.NumberOf.GetValueOrDefault(1)).Date >= startTime.Date)
+                            if (rule.LastSent.GetValueOrDefault().AddDays(rule.NumberOf.GetValueOrDefault(1)).Date <= startTime.Date)
                                 runRule = true;
                         }
 

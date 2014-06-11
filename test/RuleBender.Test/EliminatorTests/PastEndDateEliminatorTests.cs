@@ -84,12 +84,12 @@ namespace RuleBender.Test.EliminatorTests
         }
 
         [Test]
-        public void ShouldBeEliminatedReturnsFalseIfStartTimeIsBeforeEndDate()
+        public void ShouldBeEliminatedReturnsFalseIfStartTimeIsEqualToEndDate()
         {
             // Assemble
             var startTime   = new DateTime(2014, 6, 14);
-            var endDate     = new DateTime(2014, 6, 15);
-            Assert.IsTrue(endDate > startTime, "Test is not Valid");
+            var endDate     = new DateTime(2014, 6, 14);
+            Assert.IsTrue(endDate.Date == startTime.Date, "Test is not Valid");
 
             var mailRule = new MailRule { EndDate = endDate };
 
@@ -101,12 +101,12 @@ namespace RuleBender.Test.EliminatorTests
         }
 
         [Test]
-        public void ShouldBeEliminatedReturnsFalseIfStartTimeIsEqualToEndDate()
+        public void ShouldBeEliminatedReturnsFalseIfStartTimeIsBeforeEndDate()
         {
             // Assemble
             var startTime   = new DateTime(2014, 6, 14);
-            var endDate     = new DateTime(2014, 6, 14);
-            Assert.IsTrue(endDate.Date == startTime.Date, "Test is not Valid");
+            var endDate     = new DateTime(2014, 6, 15);
+            Assert.IsTrue(endDate > startTime, "Test is not Valid");
 
             var mailRule = new MailRule { EndDate = endDate };
 

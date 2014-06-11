@@ -41,6 +41,10 @@ namespace RuleBender.RuleParsers
                 if (!rule.IsActive)
                     keepRule = false;
 
+                // Eliminate if rule ran today.
+                if (rule.LastSent.GetValueOrDefault().Date == startTime.Date)
+                    keepRule = false;
+
                 // Eliminate if rule has max occurrences and has been exceeded.
                 if (rule.MaxOccurences.HasValue)
                     if (rule.TimesSent >= rule.MaxOccurences)
@@ -48,12 +52,8 @@ namespace RuleBender.RuleParsers
 
                 // Eliminate if rule has end date and start time is past end date.
                 if (rule.EndDate.HasValue)
-                    if (rule.EndDate > startTime)
+                    if (rule.EndDate < startTime)
                         keepRule = false;
-
-                // Eliminate if rule ran today.
-                if (rule.LastSent.GetValueOrDefault().Date == startTime.Date)
-                    keepRule = false;
 
                 // Eliminate if rule has start date and start time is before start date.
                 if (rule.StartDate.HasValue)
@@ -85,9 +85,7 @@ namespace RuleBender.RuleParsers
                         if (!rule.IsDayOfWeekRestricted)
                         {
                             // Met daily recurrence.
-                            var rule1 = rule.LastSent.GetValueOrDefault().AddDays(rule.NumberOf.GetValueOrDefault(1)).Date >= startTime.Date;
-
-                            if (rule1)
+                            if (rule.LastSent.GetValueOrDefault().AddDays(rule.NumberOf.GetValueOrDefault(1)).Date <= startTime.Date)
                                 runRule = true;
                         }
 

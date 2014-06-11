@@ -46,7 +46,8 @@ namespace RuleBender.RuleParsers
                                    new InactiveEliminator(),
                                    new MaxRecurrencesEliminator(),
                                    new PastEndDateEliminiator(),
-                                   new RanTodayEliminator()
+                                   new RanTodayEliminator(),
+                                   new StartDateEliminator()
                                };
 
             this.matchers = new List<IMailRuleMatcher>
@@ -54,7 +55,7 @@ namespace RuleBender.RuleParsers
                                 new WeeklyMatcher(),
                                 new DateOfMonthMatcher(),
                                 new DayOfWeekOfMonthOfYearMatcher(),
-                                new DayOfWeekOfMonthHandler(),
+                                new DayOfWeekOfMonthMatcher(),
                                 new DateOfMonthOfYearMatcher(),
                                 new EveryDayMatcher(),
                                 new EveryWeekDayMatcher()

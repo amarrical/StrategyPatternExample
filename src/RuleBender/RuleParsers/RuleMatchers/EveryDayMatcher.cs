@@ -36,8 +36,8 @@ namespace RuleBender.RuleParsers.RuleMatchers
         /// <returns>A value indicating whether the rule should be ran.</returns>
         public bool ShouldBeRun(MailRule rule, DateTime startTime)
         {
-            return rule.LastSent.GetValueOrDefault().AddDays(rule.NumberOf.GetValueOrDefault(1)).Date >= startTime.Date;    // Rule has exceeded NumberOf days (default: 1) since last run.
-        } 
+            return rule.LastSent.GetValueOrDefault().AddDays(rule.NumberOf.GetValueOrDefault(1)).Date <= startTime.Date;    // Rule has exceeded NumberOf days (default: 1) since last run.
+        }
 
         #endregion
     }

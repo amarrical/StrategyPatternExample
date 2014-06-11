@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DayOfWeekOfMonthHandler.cs" company="ImprovingEnterprises">
+// <copyright file="DayOfWeekOfMonthMatcher.cs" company="ImprovingEnterprises">
 //     Copyright (c) ImprovingEnterprises. All rights reserved.
 // </copyright>
 // <author>Anthony Marrical</author>
@@ -16,14 +16,14 @@ namespace RuleBender.RuleParsers.RuleMatchers
     /// <summary>
     /// Matches a MailRule configure to be run on a certain days of week of a week in a month.
     /// </summary>
-    public class DayOfWeekOfMonthHandler : IMailRuleMatcher
+    public class DayOfWeekOfMonthMatcher : IMailRuleMatcher
     {
         #region [ Constructors ]
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DayOfWeekOfMonthHandler"/> class.
+        /// Initializes a new instance of the <see cref="DayOfWeekOfMonthMatcher"/> class.
         /// </summary>
-        public DayOfWeekOfMonthHandler()
+        public DayOfWeekOfMonthMatcher()
         {
             this.SubMatchers = new List<ISubMatcher>
                                {

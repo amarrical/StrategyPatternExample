@@ -31,7 +31,7 @@ namespace RuleBender.RuleParsers.Combined
                                             new WeeklyMatcher(),
                                             new DateOfMonthMatcher(),
                                             new DayOfWeekOfMonthOfYearMatcher(),
-                                            new DayOfWeekOfMonthHandler(),
+                                            new DayOfWeekOfMonthMatcher(),
                                             new DateOfMonthOfYearMatcher(),
                                             new EveryDayMatcher(),
                                             new EveryWeekDayMatcher()
